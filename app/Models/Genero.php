@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Genero extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'nome'
+    ]
+    public function filme()
+    {
+        return $this->hasOne(Filme::class);
+        
+    }
+  
 }

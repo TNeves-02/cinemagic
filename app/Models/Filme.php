@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Filme extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = [
+        'titulo', 'genero_code', 'cartaz_url','sumario','trailer_url'
+    ];
+    
+    public function genero()
+    {
+        return $this->belongsTo(Genero::class);
+        
+    }
+    public function sessao()
+    {
+        return $this->hasOne(Sessao::class);
+        
+    }
 }

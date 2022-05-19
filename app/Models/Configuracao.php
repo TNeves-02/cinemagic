@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Configuracao extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    protected $fillable = [
+        'preco_bilhete_sem_iva', 'percentagem_iva'
+    ];
 }
