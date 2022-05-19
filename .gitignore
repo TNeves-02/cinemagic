@@ -12,3 +12,29 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+## Mega
+.debris
+Rubbish
+
+## NextCloud
+.owncloudsync.log
+._sync_*
+
+## IDEAs
+.idea
+.vscode
+.editorconfig
+
+## Composer
+composer.phar
+vendor
+
+## NodeJS
+node_modules
+
+##Laravel
+public/storage
+public/js
+public/css
+.env
