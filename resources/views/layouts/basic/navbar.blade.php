@@ -1,15 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="{{url('img/navbar/inicial.svg')}}" style="margin-left: 30px;" width="100px" height="100px">
-    <a class="navbar-brand" style="align-items:center ;" href="#">Cinemagic</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
- 
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <img src="{{url('img/navbar/inicial.svg')}}" id="logo-img-navbar">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a class="navbar-brand mx-center text-white" id="navbar-center" href="#"> Cinemagic </a>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    @auth
+            <div class="avatar-area">
+                <span class="name-user">{{Auth::user()->name}}</span>
+                <img src="{{Auth::user()->url_foto ? asset('storage/fotos/' . Auth::user()->url_foto) : asset('img/default_img.png') }}">
+            </div>
+        @else
+            <div class="avatar-area">
+                <a class="btn btn-light" href="{{ route('login') }}">Login</a>
+            </div>
+        @endauth
+    </div>    
 </nav>
+

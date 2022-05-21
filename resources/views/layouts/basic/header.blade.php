@@ -9,10 +9,16 @@
        {{ config('app.name')}}
     </title>
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('js/estilos.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+   
+    
 
 </head>
+<body>
 
 

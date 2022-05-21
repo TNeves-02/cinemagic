@@ -1,21 +1,178 @@
-
 @extends('layouts.public')
 
 @section('main')
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100" src="..." alt="First slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Second slide">
-            </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="..." alt="Third slide">
-            </div>
+
+<br>
+<h2 class="ult-lancamentos">Últimos Lançamentos</h2>
+<div class="carousel">
+    <div class="container">
+        <input type="radio" name="slider" id="item-1" checked>
+        <input type="radio" name="slider" id="item-2">
+        <input type="radio" name="slider" id="item-3">
+        <div class="cards">
+            <label class="card-carousel" for="item-1" id="movie-1">
+                <img id="img-carousel" src="https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80" alt="movie">
+            </label>
+            <label class="card-carousel" for="item-2" id="movie-2">
+                <img id="img-carousel" src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80" alt="movie">
+            </label>
+            <label class="card-carousel" for="item-3" id="movie-3">
+                <img id="img-carousel" src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="movie">
+            </label>
         </div>
     </div>
+</div>
+
+
+<div class="container-movie" id="movie-style">
+	<div class="movie-card" >
+		<div class="movie-header manOfSteel">
+            <!-- imagem aqui -->
+		</div><!--movie-header-->
+		<div class="movie-content">
+			<div class="movie-content-header">
+				<a href="#">
+					<h3 class="movie-title">Man of Steel</h3>
+				</a>
+				<div class="imax-logo"></div>
+			</div>
+			<div class="movie-info">
+				<div class="info-section">
+					<label>Date & Time</label>
+					<span>Sun 8 Sept - 10:00PM</span>
+				</div><!--date,time-->
+				<div class="info-section">
+					<label>Screen</label>
+					<span>03</span>
+				</div><!--screen-->
+				<div class="info-section">
+					<label>Row</label>
+					<span>F</span>
+				</div><!--row-->
+				<div class="info-section">
+					<label>Seat</label>
+					<span>21,22</span>
+				</div><!--seat-->
+			</div>
+		</div><!--movie-content-->
+	</div><!--movie-card-->
+	
+	<div class="movie-card">
+		<div class="movie-header babyDriver">
+			<!-- imagem aqui -->
+		</div><!--movie-header-->
+		<div class="movie-content">
+			<div class="movie-content-header">
+				<a href="#">
+					<h3 class="movie-title">Baby Driver</h3>
+				</a>
+				<div class="imax-logo"></div>
+			</div>
+			<div class="movie-info">
+				<div class="info-section">
+					<label>Ano</label>
+					<span>2022</span>
+				</div><!--date,time-->
+				<div class="info-section">
+					<label>Genero</label>
+					<span>Ação</span>
+				</div><!--screen-->
+			</div>
+		</div><!--movie-content-->
+	</div><!--movie-card-->
+	
+	<div class="movie-card">
+		<div class="movie-header theDarkTower">
+			<!-- imagem aqui -->
+		</div><!--movie-header-->
+		<div class="movie-content">
+			<div class="movie-content-header">
+				<a href="#">
+					<h3 class="movie-title">The Dark Tower</h3>
+				</a>
+				<div class="imax-logo"></div>
+			</div>
+			<div class="movie-info">
+				<div class="info-section">
+					<label>Date & Time</label>
+					<span>Wed 16 Aug - 07:00PM</span>
+				</div><!--date,time-->
+				<div class="info-section">
+					<label>Screen</label>
+					<span>06</span>
+				</div><!--screen-->
+				<div class="info-section">
+					<label>Row</label>
+					<span>C</span>
+				</div><!--row-->
+				<div class="info-section">
+					<label>Seat</label>
+					<span>18</span>
+				</div><!--seat-->
+			</div>
+		</div><!--movie-content-->
+	</div><!--movie-card-->
+	
+	<div class="movie-card">
+		<div class="movie-header bladeRunner2049">
+			<!-- imagem aqui -->
+		</div><!--movie-header-->
+		<div class="movie-content">
+			<div class="movie-content-header">
+				<a href="#">
+					<h3 class="movie-title">Blade Runner 2049</h3>
+				</a>
+				<div class="imax-logo"></div>
+			</div>
+			<div class="movie-info">
+				<div class="info-section">
+					<label>Date & Time</label>
+					<span>Mon 16 Oct - 10:00PM</span>
+				</div><!--date,time-->
+				<div class="info-section">
+					<label>Screen</label>
+					<span>06</span>
+				</div><!--screen-->
+				<div class="info-section">
+					<label>Row</label>
+					<span>D</span>
+				</div><!--row-->
+				<div class="info-section">
+					<label>Seat</label>
+					<span>05,06</span>
+				</div><!--seat-->
+			</div>
+		</div><!--movie-content-->
+	</div><!--movie-card-->
+	
+</div><!--container-->
+
+<br><br><br>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination pagination-flush">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link circle circle-md" href="#"><span>1</span></a></li>
+    <li class="page-item"><a class="page-link circle circle-md" href="#"><span>2</span></a></li>
+    <li class="page-item disabled"><a class="page-link circle circle-md" href="#"><span>...</span></a></li>
+    <li class="page-item active"><a class="page-link circle circle-md" href="#"><span>28</span></a></li>
+    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a></li>
+  </ul>
+</nav>
+
+
+<br><br><br>
+
+<br><br><br>
+
+<br><br><br>
+
+<br><br><br>
+
 @endsection
+
+
+
 <!--
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
