@@ -9,8 +9,14 @@ class FilmeController extends Controller
 {
     public function index()
     {
-        $listaFilmes = Filme::all(); //lista de todos os filmes
-        dd($listaFilmes); //apagar
+        $qry = Filme::query();
+        /*
+        if ($curso) {
+            $qry->where('curso', $curso);
+        }
+        */
+        $filmes = $qry->paginate(20);
+        return view('welcome.index')->withFilmes($filmes);
 
     }
 }
