@@ -15,7 +15,7 @@ class FilmeController extends Controller
             $qry->where('curso', $curso);
         }
         */
-        $filmes = $qry->paginate(20);
+        $filmes = $qry->paginate(8);
         return view('welcome.index')->withFilmes($filmes);
 
     }
