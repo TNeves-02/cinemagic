@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap);
 body{
   background-color: #202020;
   color: white;
@@ -5,6 +6,7 @@ body{
 
 nav{
   background-color: #272829;
+  
 }
 
 footer{
@@ -17,6 +19,10 @@ footer{
     height:60px;
 }
 
+#navbar-center{
+  font-size: 1.8rem;
+}
+
 #navbarSupportedContent{
     margin-right: 30px;
 }
@@ -25,8 +31,11 @@ footer{
     text-align: center;
 }
 
+.paginacao{
+  color: black;
+}
+
 /*********************************/
-@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
 
 .carousel{
     margin: 0;
@@ -148,18 +157,13 @@ a:hover {
 
 .container-movie {
   color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   max-width: 100%;
   margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 .movie-card {
@@ -227,8 +231,7 @@ a:hover {
 }
 
 .movie-card:hover {
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
+  transform: scale(1.03);
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
 
@@ -302,3 +305,4 @@ a:hover {
     margin: 0;
   }
 }
+

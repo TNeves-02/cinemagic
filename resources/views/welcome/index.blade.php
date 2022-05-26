@@ -72,11 +72,14 @@
     </div>
     <!--movie-card-->
     @endforeach
+    <div class="paginacao">
     {{ $filmes->withQueryString()->links() }}
+    </div>
 </div>
 <!--container-->
 
 <br><br><br>
+
 
 
 
