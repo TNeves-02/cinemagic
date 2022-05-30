@@ -11,7 +11,7 @@ class Genero extends Model
     public $timestamps = false;
     protected $fillable = [
         'nome'
-    ]
+    ];
     public function filme()
     {
         return $this->hasOne(Filme::class);

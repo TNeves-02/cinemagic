@@ -25,3 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', [FilmeController::class, 'index'])->name('welcome.index');
 
+Route::get('/filmes', [FilmeController::class, 'filmespag'])->name('filmes.index');
+
