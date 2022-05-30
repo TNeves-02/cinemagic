@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\DashboardController;
 
 
 /*
@@ -26,4 +27,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [FilmeController::class, 'index'])->name('welcome.index');
 
 Route::get('/filmes', [FilmeController::class, 'filmespag'])->name('filmes.index');
+
+Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
