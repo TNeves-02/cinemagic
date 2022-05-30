@@ -15,12 +15,12 @@ class Sala extends Model
     
     public function sessao()
     {
-        return $this->hasOne(Sessao::class);
+        return $this->hasMany(Sessao::class,"id","sala_id");
         
     }
     public function lugar()
     {
-        return $this->hasOne(Lugar::class);
+        return $this->hasMany(Lugar::class,"id","sala_id");
         
     }
 }

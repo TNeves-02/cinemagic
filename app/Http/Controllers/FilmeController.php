@@ -33,9 +33,17 @@ class FilmeController extends Controller
         */
         $filmes = $qry->paginate(20);
         $generos = Genero::all();
-
+        $generoName = Genero::join('filmes','generos.code','=','filmes.genero_code')
+                                             ->select('generos.nome')
+                                             ->get();   
+        
+        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get();                                      
+          
         return view('filmes.index')->withFilmes($filmes)
-                                    ->withGeneros($generos);
+                                   ->withGeneroNome($generoName)
+                                   ->withGeneros($generos)
+                                   ->withAnos($ano);
+
     }
 
 

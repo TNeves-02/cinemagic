@@ -10,12 +10,11 @@ class Genero extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'nome'
+        'code','nome'
     ];
     public function filme()
     {
-        return $this->hasOne(Filme::class);
-        
+        return $this->hasMany(Filme::class,'code','genero_code');
     }
   
 }

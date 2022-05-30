@@ -15,11 +15,11 @@ class Recibo extends Model
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente::class,"cliente_id","id");
     }
 
     public function bilhete()
     {
-        return $this->hasOne(Cliente::class);
+        return $this->hasMany(Cliente::class,"recibo_id","id");
     }
 }

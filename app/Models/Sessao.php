@@ -16,17 +16,15 @@ class Sessao extends Model
 
     public function filme()
     {
-        return $this->belongsTo(Filme::class);
+        return $this->belongsTo(Filme::class,"filme_id","id");
     }
 
     public function sala()
     {
-        return $this->belongsTo(Sala::class);
-        
+        return $this->belongsTo(Sala::class,"sala_id","id");  
     }
     public function bilhete()
     {
-        return $this->hasOne(Bilhete::class);
-        
+        return $this->hasOne(Bilhete::class,"id","sessao_id");        
     }
 }

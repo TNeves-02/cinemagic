@@ -58,25 +58,15 @@
             </div>
             <div class="movie-info">
                 <div class="info-section">
-                    <label>Date & Time</label>
-                    <span>Sun 8 Sept - 10:00PM</span>
+                    <label>Género</label>
+                    <span>{{$filme->genero}}</span>
                 </div>
                 <!--date,time-->
                 <div class="info-section">
-                    <label>Screen</label>
-                    <span>03</span>
+                    <label>Ano</label>
+                    <span>{{$filme->ano}}</span>
+                    
                 </div>
-                <!--screen-->
-                <div class="info-section">
-                    <label>Row</label>
-                    <span>F</span>
-                </div>
-                <!--row-->
-                <div class="info-section">
-                    <label>Seat</label>
-                    <span>21,22</span>
-                </div>
-                <!--seat-->
             </div>
         </div>
         <!--movie-content-->

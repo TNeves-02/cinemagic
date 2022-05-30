@@ -16,12 +16,11 @@ class Filme extends Model
     
     public function genero()
     {
-        return $this->belongsTo(Genero::class);
-        
+        return $this->belongsTo(Genero::class,"genero_code","code");
     }
     public function sessao()
     {
-        return $this->hasOne(Sessao::class);
+        return $this->hasMany(Sessao::class,"id","filme_id");
         
     }
 }

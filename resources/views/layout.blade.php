@@ -14,7 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('js/estilos.js') }}"></script>
+    <!--<script src="{{ asset('js/estilos.js') }}"></script> -->
     <script src="{{ asset('js/app.js') }}"></script>
    
 
@@ -44,7 +44,7 @@
         @auth
         <div class="avatar-area">
             <span class="name-user">{{Auth::user()->name}}</span>
-            <img src="{{Auth::user()->url_foto ? asset('storage/fotos/' . Auth::user()->url_foto) : asset('img/default_img.png') }}">
+            <img src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
         </div>
         @else
         <div class="avatar-area">

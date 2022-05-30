@@ -14,12 +14,12 @@ class Lugar extends Model
     ];
     public function bilhete()
     {
-        return $this->hasOne(Bilhete::class);
+        return $this->hasOne(Bilhete::class,"id","lugar_id");
     }
 
     public function sala()
     {
-        return $this->belongsTo(Sala::class);
+        return $this->hasOne(Sala::class,"sala_id","id");
         
     }
 }
