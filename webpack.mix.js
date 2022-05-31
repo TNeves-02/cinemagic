@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('node_modules/jquery/dist/jquery.js', 'public/js')
     .js('resources/js/bootstrap.js', 'public/js')
     .js('resources/js/sb-admin-2.js', 'public/js')
     .js('resources/js/sb-admin-2.min.js', 'public/js')
@@ -19,4 +20,5 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/estilos.css', 'public/css')
     .postCss('resources/css/sb-admin-2.css', 'public/css')
     .postCss('resources/css/sb-admin-2.min.css', 'public/css')
+    .postCss('node_modules/@fortawesome/fontawesome-free/css/all.css','public/css')
     .sourceMaps();
