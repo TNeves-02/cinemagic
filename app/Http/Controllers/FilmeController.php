@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Filme;
 use App\Models\Genero;
+use App\Models\Bilhete;
 
 class FilmeController extends Controller
 {
@@ -18,9 +19,11 @@ class FilmeController extends Controller
         */
         $filmes = $qry->paginate(10);
         $generos = Genero::all();
+        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();                                  
 
         return view('welcome.index')->withFilmes($filmes)
-                                    ->withGeneros($generos);
+                                    ->withGeneros($generos)
+                                    ->withUltLancamentos($ultLancamentos);
     }
 
     public function filmespag()
@@ -33,17 +36,51 @@ class FilmeController extends Controller
         */
         $filmes = $qry->paginate(20);
         $generos = Genero::all();
-        $generoName = Genero::join('filmes','generos.code','=','filmes.genero_code')
-                                             ->select('generos.nome')
-                                             ->get();   
         
-        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get();                                      
-          
+        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
+      
         return view('filmes.index')->withFilmes($filmes)
-                                   ->withGeneroNome($generoName)
                                    ->withGeneros($generos)
                                    ->withAnos($ano);
+                
+    }
 
+    public function filmepag()
+    {
+        $qry = Filme::query();
+        /*
+        if ($curso) {
+            $qry->where('curso', $curso);
+        }
+        */
+        $filmes = $qry->paginate(20);
+        $generos = Genero::all();
+        
+        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
+      
+        return view('filmes.filme')->withFilmes($filmes)
+                                   ->withGeneros($generos)
+                                   ->withAnos($ano);
+                
+    }
+
+    public function bilhete()
+    {
+        $qry = Filme::query();
+        /*
+        if ($curso) {
+            $qry->where('curso', $curso);
+        }
+        */
+        $filmes = $qry->paginate(20);
+        $generos = Genero::all();
+        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get(); 
+        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
+      
+        return view('bilhetes.index')->withFilmes($filmes)
+                                   ->withGeneros($generos)                                
+                                   ->withAnos($ano);
+                
     }
 
 

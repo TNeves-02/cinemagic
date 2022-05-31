@@ -1049,6 +1049,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 /***/ }),
 
+/***/ "./node_modules/@fortawesome/fontawesome-free/css/all.css":
+/*!****************************************************************!*\
+  !*** ./node_modules/@fortawesome/fontawesome-free/css/all.css ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvQGZvcnRhd2Vzb21lL2ZvbnRhd2Vzb21lLWZyZWUvY3NzL2FsbC5jc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vbm9kZV9tb2R1bGVzL0Bmb3J0YXdlc29tZS9mb250YXdlc29tZS1mcmVlL2Nzcy9hbGwuY3NzPzI1NzIiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/@fortawesome/fontawesome-free/css/all.css\n");
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -1184,6 +1195,7 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 			"/js/app": 0,
 /******/ 			"css/estilos": 0,
 /******/ 			"css/app": 0,
+/******/ 			"css/all": 0,
 /******/ 			"css/sb-admin-2.min": 0,
 /******/ 			"css/sb-admin-2": 0
 /******/ 		};
@@ -1235,11 +1247,12 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/estilos.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/sb-admin-2.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/estilos","css/app","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/sb-admin-2.min.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/estilos.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/sb-admin-2.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./resources/css/sb-admin-2.min.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/estilos","css/app","css/all","css/sb-admin-2.min","css/sb-admin-2"], () => (__webpack_require__("./node_modules/@fortawesome/fontawesome-free/css/all.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

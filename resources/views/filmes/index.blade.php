@@ -38,9 +38,9 @@
 <div class="container-movie" id="movie-style">
 
     @foreach($filmes as $filme)
+    
     <div class="movie-card">
-        <div class="movie-header" style="background:url(storage/cartazes/{{$filme->cartaz_url}});">
-
+        <div class="movie-header" style="background:url(storage/cartazes/{{$filme->cartaz_url}});">        
         </div>
         <!--movie-header-->
         <div class="movie-content">

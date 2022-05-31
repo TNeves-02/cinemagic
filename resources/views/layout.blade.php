@@ -11,13 +11,12 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     
+
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
-    <script src="{{ asset('js/estilos.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-   
-
 
 </head>
 <body>
@@ -34,13 +33,13 @@
                 <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">Filmes</a>
             </li>
             <li class="nav-item">
-                <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">Sessoẽs</a>
+                <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">Sessões</a>
             </li>
         </ul>
     </div>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-    <i class="bi bi-cart" style="color:white;"></i>
-
+    
+    <a class="btn btn btn-outline-bg" id="carbtn" href="#"><i class="bi bi-cart" id="carbtn-ico"></i>Carrinho</a>
         @auth
         <div class="avatar-area">
             <span class="name-user">{{Auth::user()->name}}</span>
@@ -60,16 +59,6 @@
 
 <br><br><br>
 
-
-
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
-
-<br><br><br>
 
 <footer class="text-center text-white">
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);"> Aplicações para Internet - Cinemagic | © 2022 Copyright
