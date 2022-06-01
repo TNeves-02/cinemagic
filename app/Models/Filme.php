@@ -11,7 +11,7 @@ class Filme extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'titulo', 'genero_code', 'cartaz_url','sumario','trailer_url'
+        'titulo', 'genero_code','ano','sumario','trailer_url','cartaz_url'
     ];
     
     public function genero()
