@@ -45,7 +45,7 @@
         <!--movie-header-->
         <div class="movie-content">
             <div class="movie-content-header">
-                <a href="#">
+                <a href="{{route('filmes.filme', $filme)}}">
                     <h3 class="movie-title">{{$filme->titulo}}</h3>
                 </a>
 

@@ -45,22 +45,14 @@ class FilmeController extends Controller
                 
     }
 
-    public function filmepag()
+    public function filmepag(Filme $filme)
     {
-        $qry = Filme::query();
-        /*
-        if ($curso) {
-            $qry->where('curso', $curso);
-        }
-        */
-        $filmes = $qry->paginate(20);
-        $generos = Genero::all();
-        
-        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
-      
-        return view('filmes.filme')->withFilmes($filmes)
-                                   ->withGeneros($generos)
-                                   ->withAnos($ano);
+        $genero = $filme->genero_code;
+
+        $semelhantes = Filme::select('id', 'cartaz_url')->where('genero_code', $genero)->get(3);
+    
+        return view('filmes.filme')->withFilme($filme)
+                                   ->withSemelhantes($semelhantes);
                 
     }
 
@@ -82,7 +74,6 @@ class FilmeController extends Controller
                                    ->withAnos($ano);
                 
     }
-
 
 }
 

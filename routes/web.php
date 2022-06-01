@@ -28,7 +28,7 @@ Route::get('/', [FilmeController::class, 'index'])->name('welcome.index');
 
 Route::get('/filmes', [FilmeController::class, 'filmespag'])->name('filmes.index');
 
-Route::get('/filme', [FilmeController::class, 'filmepag'])->name('filmes.filme');
+Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes.filme');
 
 Route::get('/bilhete', [FilmeController::class, 'bilhete'])->name('bilhetes.index');
 
