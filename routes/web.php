@@ -34,3 +34,24 @@ Route::get('/bilhete', [FilmeController::class, 'bilhete'])->name('bilhetes.inde
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    //filmes admin
+    Route::get('filmes', [FilmeController::class, 'admin_index'])->name('filmes');
+
+    Route::get('filmes/{filme}/edit', [FilmeController::class, 'edit'])->name('filmes.edit');
+
+    Route::get('filmes/{filme}/view', [FilmeController::class, 'view'])->name('filmes.view');
+
+    Route::get('filmes/create', [FilmeController::class, 'create'])->name('filmes.create');
+
+    Route::post('filmes', [FilmeController::class, 'store'])->name('filmes.store');
+
+    Route::put('filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update');
+
+    Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy');
+
+    Route::delete('filmes/{filme}/foto', [FilmeController::class, 'destroy_foto'])->name('filmes.foto.destroy');
+});
