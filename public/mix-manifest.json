@@ -6,7 +6,8 @@
     "/js/sb-admin-2.min.js": "/js/sb-admin-2.min.js",
     "/css/estilos.css": "/css/estilos.css",
     "/css/app.css": "/css/app.css",
-    "/css/all.css": "/css/all.css",
     "/css/sb-admin-2.min.css": "/css/sb-admin-2.min.css",
-    "/css/sb-admin-2.css": "/css/sb-admin-2.css"
+    "/css/sb-admin-2.css": "/css/sb-admin-2.css",
+    "/css/estilos-admin.css": "/css/estilos-admin.css",
+    "/css/all.css": "/css/all.css"
 }

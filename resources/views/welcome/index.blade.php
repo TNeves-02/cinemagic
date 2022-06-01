@@ -36,7 +36,7 @@
 <div class="container-movie" style="background-color: #272829;">
   <p>Filmes Mais vistos</p>
   <!--Carousel Wrapper-->
-  <!-- Top content -->
+  <!-- Top content 
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -61,13 +61,13 @@
               <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
             </div>
 
-            <!--  Example item end -->
+            <!--  Example item end 
           </div>
           <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
           <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 @endsection
