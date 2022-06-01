@@ -49,7 +49,43 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item -->
-           
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Clientes</span></a>
+            </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('admin.filmes')}}">
+                    <i class="fas fa-fw fa-film"></i>
+                    <span>Filmes</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-clapperboard"></i>
+                    <span>Generos</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-ticket"></i>
+                    <span>Bilhetes</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-house-chimney"></i>
+                    <span>Salas</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-couch"></i>
+                    <span>Lugares</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Sessoes</span></a>
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
