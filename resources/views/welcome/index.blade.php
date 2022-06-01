@@ -36,47 +36,45 @@
 <div class="container-movie" style="background-color: #272829;">
   <p>Filmes Mais vistos</p>
   <!--Carousel Wrapper-->
-  <div class="container">
-    <h1>Use Bootstrap 3's carousel to show multiple items per slide.</h1>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel slide multi-item-carousel" id="theCarousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth,australia" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?west-australia" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?quokka,perth" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?margaretriver,australia" class="img-responsive"></a></div>
-            </div>
-            <!-- add  more items here -->
-            <!-- Example item start:  -->
-
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth,australia&r=7" class="img-responsive"></a></div>
-            </div>
-
-            <!--  Example item end -->
+  <!-- Top content -->
+  <div class="top-content">
+    <div class="container-fluid">
+      <div id="carousel-example" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img1">
           </div>
-          <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-          <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img2">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img3">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img4">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img5">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img6">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img7">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-fluid mx-auto d-block" alt="img8">
+          </div>
         </div>
+        <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
   </div>
-</div>
-
-
-
-@endsection
+  @endsection

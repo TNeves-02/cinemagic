@@ -15,6 +15,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/estilos-admin.css') }}" rel="stylesheet">
 
 </head>
 
@@ -233,7 +234,7 @@
     <!-- Core plugin JavaScript-->
      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
     <!-- Custom scripts for all pages-->
-    < <script src="{{asset('js/sb-admin-2.min.js')}}"></script> 
+     <script src="{{asset('js/sb-admin-2.min.js')}}"></script> 
 
 </body>
 
