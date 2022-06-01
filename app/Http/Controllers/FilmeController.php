@@ -133,7 +133,7 @@ class FilmeController extends Controller
         $newFilme->save();
 
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $newFilme->titulo . '" foi criada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $newFilme->titulo . '" foi criado com sucesso!')
             ->with('alert-type', 'success');
     }
 
@@ -142,7 +142,7 @@ class FilmeController extends Controller
         $filme->fill($request->validated());
         $filme->save();
         return redirect()->route('admin.filmes')
-            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi alterada com sucesso!')
+            ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi alterado com sucesso!')
             ->with('alert-type', 'success');
     }
 
@@ -153,7 +153,7 @@ class FilmeController extends Controller
         try {
             $filme->delete();
             return redirect()->route('admin.filmes')
-                ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi apagada com sucesso!')
+                ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi apagado com sucesso!')
                 ->with('alert-type', 'success');
         } catch (\Throwable $th) {
             

@@ -43,7 +43,7 @@
 </div>
 
 <div class="form-group">
-    <label for="inputCartaz">Cartaz</label>
+    <label for="inputCartaz">Cartaz</label> 
     <input type="file" class="form-control" name="cartaz_url" id="inputCartaz">
     @error('cartaz_url')
         <div class="small text-danger">{{$message}}</div>

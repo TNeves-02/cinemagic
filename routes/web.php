@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -54,4 +55,20 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy');
 
     Route::delete('filmes/{filme}/foto', [FilmeController::class, 'destroy_foto'])->name('filmes.foto.destroy');
+
+    //generos admin
+    Route::get('generos', [GeneroController::class, 'admin_index'])->name('generos');
+
+    Route::get('generos/{genero}/edit', [GeneroController::class, 'edit'])->name('generos.edit');
+
+    Route::get('generos/{genero}/view', [GeneroController::class, 'view'])->name('generos.view');
+
+    Route::get('generos/create', [GeneroController::class, 'create'])->name('generos.create');
+
+    Route::post('generos', [GeneroController::class, 'store'])->name('generos.store');
+
+    Route::put('generos/{genero}', [GeneroController::class, 'update'])->name('generos.update');
+
+    Route::delete('generos/{genero}', [GeneroController::class, 'destroy'])->name('generos.destroy');
+
 });
