@@ -42,12 +42,12 @@
     
     <a class="btn btn btn-outline-bg" id="carbtn" href="#"><i class="bi bi-cart" id="carbtn-ico"></i>Carrinho</a>
         @auth
-        <div class="avatar-area">
+        <div class="avatar-area ms-3">
             <span class="name-user">{{Auth::user()->name}}</span>
-            <img src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
+            <img class="rounded-circle ms-3" style="width: 50px; height:50px" src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
         </div>
         @else
-        <div class="avatar-area">
+        <div class="avatar-area ms-3">
             <a class="btn btn-light" href="{{ route('login') }}">Login</a>
         </div>
         @endauth

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-3">
-        <a href="{{route('admin.filmes.create')}}" class="btn btn-success" role="button" aria-pressed="true">Novo Filme</a>
+        <a href="{{route('admin.filmes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo Filme</a>
     </div>
     <div class="col-9">
         <form method="GET" action="{{route('admin.filmes')}}" class="form-group">
@@ -13,7 +13,7 @@
                     @foreach ($generos as $genero)
                     <option value={{$genero->code}} {{$genero->code == old('genero', $selectedGenero) ? 'selected' : ''}}>{{$genero -> nome}}</option>
                     @endforeach
-                   
+
                 </select>
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
@@ -28,8 +28,7 @@
             <th>Titulo</th>
             <th>Genero</th>
             <th>Ano</th>
-            <th></th>
-            <th></th>
+            <th colspan="3" style="text-align:center;">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -40,22 +39,25 @@
             <td>{{$filme->ano}}</td>
             <td>
                 <a href="{{route('admin.filmes.edit', ['filme' => $filme])}}"
-                    class="btn btn-primary btn-sm" role="button" aria-pressed="true">Alterar</a>
+                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i></a>
              </td>
              <td>
                 <a href="{{route('admin.filmes.view', ['filme' => $filme])}}"
-                    class="btn btn-warning btn-sm" role="button" aria-pressed="true">Visualizar</a>
+                    class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i></a>
              </td>
                 <td>
-                    <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}"" method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <input type="submit" class="btn btn-danger btn-sm" value="Apagar">
-                    </form>
+                <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}"" method="POST">
+                    @csrf
+                    @method("DELETE")        
+                    <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-            {{ $filmes->withQueryString()->links() }}
-    @endsection
+    
+{{ $filmes->withQueryString()->links() }}
+@endsection
