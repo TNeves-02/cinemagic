@@ -17,7 +17,6 @@
     <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/estilos.js') }}"></script>
 
 </head>
 <body>
