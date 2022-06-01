@@ -2,9 +2,8 @@
 
 @section('content')
 
-<br><br><br><br><br><br>
-<section class="filme-details spad">
-    <div class="container">
+<section class="filme-details spad mt-5">
+    <div class="container mt-3">
         <div class="filme_details_content">
             <div class="row">
                 <div class="col-lg-7">
@@ -12,7 +11,7 @@
                         <img src="/storage/cartazes/{{$filme->cartaz_url}}" style="width:450px;height:650px" />
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="filme_details_text">
                         <div class="filme_details_title">
                             <h3>{{ $filme->titulo }}</h3>
@@ -37,9 +36,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filme_details_btn">
-                                <i class="fa fa-ticket-simple"></i>
-                                <button type="button" class="btn btn-light btn-lg btn-block" onclick="window.location.href='#">Bilhetes</button>
+                        <div class="filme_details_btn ms-5">                           
+                            <button type="button" class="btn btn-outline-bg btn-lg btn-block" onclick="window.location.href='#"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
                         </div>
                     </div>
                 </div>
@@ -47,7 +45,7 @@
         </div>
     </div>
     <br><br><br><br>
-    <div class="embed-responsive embed-responsive-16by9" id="trailerfilme" align="center">
+    <div class="embed-responsive embed-responsive-16by9 mt-5" id="trailerfilme" align="center">
         <h3>Trailer</h3>
         <br>
         <iframe width="960px" height="540px" class="embed-responsive-item" src="https://www.youtube.com/embed/{{ substr($filme->trailer_url, 32) }}" allowfullscreen></iframe></p>
@@ -63,20 +61,20 @@
         <input type="radio" name="slider" id="item-2">
         <input type="radio" name="slider" id="item-3">
         <div class="cards">
-            <label class="card-carousel" for="item-1" id="movie-1">   
-                <a href="{{route('filmes.filme', $semelhantes[0])}}">            
-                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[0]->cartaz_url) }}" alt="movie">    
-                </a>     
+            <label class="card-carousel" for="item-1" id="movie-1">
+                <a href="{{route('filmes.filme', $semelhantes[0])}}">
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[0]->cartaz_url) }}" alt="movie">
+                </a>
             </label>
-            <label class="card-carousel" for="item-2" id="movie-2">   
-                <a href="{{route('filmes.filme', $semelhantes[1])}}">           
-                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[1]->cartaz_url) }}" alt="movie">    
-                </a>     
+            <label class="card-carousel" for="item-2" id="movie-2">
+                <a href="{{route('filmes.filme', $semelhantes[1])}}">
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[1]->cartaz_url) }}" alt="movie">
+                </a>
             </label>
-            <label class="card-carousel" for="item-3" id="movie-3">   
-                <a href="{{route('filmes.filme', $semelhantes[2])}}">           
-                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[2]->cartaz_url) }}" alt="movie">    
-                </a>     
+            <label class="card-carousel" for="item-3" id="movie-3">
+                <a href="{{route('filmes.filme', $semelhantes[2])}}">
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[2]->cartaz_url) }}" alt="movie">
+                </a>
             </label>
         </div>
     </div>
