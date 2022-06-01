@@ -39,7 +39,7 @@
                         </div>
                         <div class="filme_details_btn">
                                 <i class="fa fa-ticket-simple"></i>
-                                <button type="button" class="btn btn-light btn-block" onclick="window.location.href='#">Bilhetes</button>
+                                <button type="button" class="btn btn-light btn-lg btn-block" onclick="window.location.href='#">Bilhetes</button>
                         </div>
                     </div>
                 </div>
@@ -56,20 +56,28 @@
 
 <br><br><br><br>
 
-<h2 class="ult-lancamentos"> Filmes Semelhantes</h2>
+<h2 align="center"> Filmes Semelhantes</h2>
 <div class="carousel">
     <div class="container">
         <input type="radio" name="slider" id="item-1" checked>
         <input type="radio" name="slider" id="item-2">
         <input type="radio" name="slider" id="item-3">
         <div class="cards">
-            @foreach($semelhantes as $semelhante)
-                <a href="{{route('filmes.filme', $semelhante)}}"><input type="radio" name="slider" id="item-{{$semelhante->id}}">
-                    <label class="card-carousel" for="item-{{$semelhante->id}}" id="movie-{{$semelhante->id}}">               
-                        <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhante->cartaz_url) }}" alt="movie">            
-                    </label>
-                </a>
-            @endforeach
+            <label class="card-carousel" for="item-1" id="movie-1">   
+                <a href="{{route('filmes.filme', $semelhantes[0])}}">            
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[0]->cartaz_url) }}" alt="movie">    
+                </a>     
+            </label>
+            <label class="card-carousel" for="item-2" id="movie-2">   
+                <a href="{{route('filmes.filme', $semelhantes[1])}}">           
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[1]->cartaz_url) }}" alt="movie">    
+                </a>     
+            </label>
+            <label class="card-carousel" for="item-3" id="movie-3">   
+                <a href="{{route('filmes.filme', $semelhantes[2])}}">           
+                    <img id="img-carousel" src="{{ asset('storage/cartazes/'.$semelhantes[2]->cartaz_url) }}" alt="movie">    
+                </a>     
+            </label>
         </div>
     </div>
 </div>

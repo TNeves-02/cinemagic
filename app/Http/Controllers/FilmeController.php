@@ -48,8 +48,12 @@ class FilmeController extends Controller
     public function filmepag(Filme $filme)
     {
         $genero = $filme->genero_code;
+        $id = $filme->id;
 
-        $semelhantes = Filme::select('id', 'cartaz_url')->where('genero_code', $genero)->get(3);
+        $semelhantes = Filme::select('id', 'cartaz_url')
+                       ->where('id','!=', $id)
+                       ->where('genero_code', $genero)
+                       ->get();
     
         return view('filmes.filme')->withFilme($filme)
                                    ->withSemelhantes($semelhantes);
