@@ -71,4 +71,19 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::delete('generos/{genero}', [GeneroController::class, 'destroy'])->name('generos.destroy');
 
+     //salas admin
+     Route::get('salas', [GeneroController::class, 'admin_index'])->name('salas');
+
+     Route::get('salas/{sala}/edit', [GeneroController::class, 'edit'])->name('salas.edit');
+ 
+     Route::get('salas/{sala}/view', [GeneroController::class, 'view'])->name('salas.view');
+ 
+     Route::get('salas/create', [GeneroController::class, 'create'])->name('salas.create');
+ 
+     Route::post('salas', [GeneroController::class, 'store'])->name('salas.store');
+ 
+     Route::put('salas/{genero}', [GeneroController::class, 'update'])->name('salas.update');
+ 
+     Route::delete('salas/{genero}', [GeneroController::class, 'destroy'])->name('salas.destroy');
+
 });
