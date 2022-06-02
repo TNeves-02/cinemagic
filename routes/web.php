@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\SalaController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -72,18 +73,18 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('generos/{genero}', [GeneroController::class, 'destroy'])->name('generos.destroy');
 
      //salas admin
-     Route::get('salas', [GeneroController::class, 'admin_index'])->name('salas');
+     Route::get('salas', [SalaController::class, 'admin_index'])->name('salas');
 
-     Route::get('salas/{sala}/edit', [GeneroController::class, 'edit'])->name('salas.edit');
+     Route::get('salas/{sala}/edit', [SalaController::class, 'edit'])->name('salas.edit');
  
-     Route::get('salas/{sala}/view', [GeneroController::class, 'view'])->name('salas.view');
+     Route::get('salas/{sala}/view', [SalaController::class, 'view'])->name('salas.view');
  
-     Route::get('salas/create', [GeneroController::class, 'create'])->name('salas.create');
+     Route::get('salas/create', [SalaController::class, 'create'])->name('salas.create');
  
-     Route::post('salas', [GeneroController::class, 'store'])->name('salas.store');
+     Route::post('salas', [SalaController::class, 'store'])->name('salas.store');
  
-     Route::put('salas/{genero}', [GeneroController::class, 'update'])->name('salas.update');
+     Route::put('salas/{sala}', [SalaController::class, 'update'])->name('salas.update');
  
-     Route::delete('salas/{genero}', [GeneroController::class, 'destroy'])->name('salas.destroy');
+     Route::delete('salas/{sala}', [SalaController::class, 'destroy'])->name('salas.destroy');
 
 });
