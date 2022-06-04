@@ -11,14 +11,17 @@
     <input type="radio" name="slider" id="item-3">
     <div class="cards">
       <label class="card-carousel" for="item-1" id="movie-1">
-        <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" alt="movie">
+        <a href="{{route('filmes.filme', $ultLancamentos[0])}}">
+          <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" alt="movie">
+        </a>
       </label>
       <label class="card-carousel" for="item-2" id="movie-2">
-        <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[1]->cartaz_url}}" alt="movie">
+        <a href="{{route('filmes.filme', $ultLancamentos[1])}}">
+          <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[1]->cartaz_url}}" alt="movie">
+        </a>
       </label>
-
       <label class="card-carousel" for="item-3" id="movie-3">
-        <a href="*?">
+        <a href="{{route('filmes.filme', $ultLancamentos[2])}}">
           <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[2]->cartaz_url}}" alt="movie">
         </a>
       </label>
