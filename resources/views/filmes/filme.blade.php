@@ -67,7 +67,7 @@
         </thead>
         <tbody>
             <tr>
-                <td >{{$filme->sessoes->sala_id}}</td>
+                <td >Sala 1</td>
                 <td style="text-align:right;">Horario 1</td>
 
                 <td style="text-align:center;">Horario 2</td>
