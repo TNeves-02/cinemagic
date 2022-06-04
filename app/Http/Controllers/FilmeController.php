@@ -55,8 +55,13 @@ class FilmeController extends Controller
                        ->where('id','!=', $id)
                        ->where('genero_code', $genero)
                        ->get();
+
+        $sessaoBilhetes = Filme::where('id','==',$id)
+                        ->get();
+
     
         return view('filmes.filme')->withFilme($filme)
+                                   ->withSessaoBilhete($sessaoBilhetes)
                                    ->withSemelhantes($semelhantes);
                 
     }

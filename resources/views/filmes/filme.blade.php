@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="filme_details_btn ms-5">                           
+                        <div class="filme_details_btn ms-5">
                             <button type="button" class="btn btn-outline-bg btn-lg btn-block" onclick="window.location.href='#"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
                         </div>
                     </div>
@@ -45,6 +45,44 @@
         </div>
     </div>
     <br><br><br><br>
+    <form method="GET" action="{{route('admin.filmes')}}" class="form-group">
+        <div class="input-group mt-5">
+            <h3 class="col-lg-7 text-center">Sessões</h3>
+            <select class="custom-select" name="genero" id="inputGernero" aria-label="Genero">
+                <option value="">Todos Generos</option>
+            </select>
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+            </div>
+        </div>
+    </form>
+    <hr class="col-lg-7">
+    <div class="col-lg-7 div-center mt-2">
+    <table class="table table-striped table-dark text-light">
+        <thead class="text-light">
+            <tr>
+                <th>Sala</th>
+                <th colspan="3" style="text-align:center;">Horários</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td >{{$filme->sessoes->sala_id}}</td>
+                <td style="text-align:right;">Horario 1</td>
+
+                <td style="text-align:center;">Horario 2</td>
+
+                <td style="text-align:left;">Horario 3</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+
+
+    <hr class="col-lg-7 mt-5">
+
     <div class="embed-responsive embed-responsive-16by9 mt-5" id="trailerfilme" align="center">
         <h3>Trailer</h3>
         <br>
