@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\SalaController;
+use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -86,5 +87,22 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
      Route::put('salas/{sala}', [SalaController::class, 'update'])->name('salas.update');
  
      Route::delete('salas/{sala}', [SalaController::class, 'destroy'])->name('salas.destroy');
+
+
+     //sessoes
+     Route::get('sessoes', [SessaoController::class, 'admin_index'])->name('sessoes');
+
+     Route::get('sessoes/{sessao}/edit', [SessaoController::class, 'edit'])->name('sessoes.edit');
+ 
+     Route::get('sessoes/{sessao}/view', [SessaoController::class, 'view'])->name('sessoes.view');
+ 
+     Route::get('sessoes/create', [SessaoController::class, 'create'])->name('sessoes.create');
+ 
+     Route::post('sessoes', [SessaoController::class, 'store'])->name('sessoes.store');
+ 
+     Route::put('sessoes/{sessao}', [SessaoController::class, 'update'])->name('sessoes.update');
+ 
+     Route::delete('sessoes/{sessao}', [SessaoController::class, 'destroy'])->name('sessoes.destroy');
+
 
 });

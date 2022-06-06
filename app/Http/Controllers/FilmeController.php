@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Filme;
 use App\Models\Genero;
 use App\Models\Bilhete;
+use App\Models\Sessao;
 use App\Http\Requests\FilmePost;
 
 class FilmeController extends Controller
@@ -48,17 +49,15 @@ class FilmeController extends Controller
 
     public function filmepag(Filme $filme)
     {
-        $genero = $filme->genero_code;
-        $id = $filme->id;
-
-        $semelhantes = Filme::select('id', 'cartaz_url')
-                       ->where('id','!=', $id)
-                       ->where('genero_code', $genero)
-                       ->get();
-    
+        $sessoes=Sessao::select('horario_inicio','data')->where('filme_id',$filme->id);
+        $semelhantes = Filme::select('id', 'cartaz_url')->where('id','!=', $filme->id)
+                                                        ->where('genero_code', $filme->genero_code)
+                                                        ->get();
+       
         return view('filmes.filme')->withFilme($filme)
-                                   ->withSemelhantes($semelhantes);
-                
+                                   ->withSemelhantes($semelhantes)
+                                   ->withSessoes($sessoes);
+
     }
 
     public function bilhete()
