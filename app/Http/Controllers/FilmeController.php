@@ -51,13 +51,12 @@ class FilmeController extends Controller
     {
         $sessoes=Sessao::select('horario_inicio','data')->where('filme_id',$filme->id);
         $semelhantes = Filme::select('id', 'cartaz_url')->where('id','!=', $filme->id)
-                                                        ->where('genero_code', $filme->genero_code)
-                                                        ->get();
-       
-        return view('filmes.filme')->withFilme($filme)
-                                   ->withSemelhantes($semelhantes)
-                                   ->withSessoes($sessoes);
+                                                ->where('genero_code', $filme->genero_code)
+                                                ->get();
 
+        return view('filmes.filme')->withFilme($filme)
+                           ->withSemelhantes($semelhantes)
+                           ->withSessoes($sessoes);
     }
 
     public function bilhete()
