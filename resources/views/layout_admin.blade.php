@@ -82,7 +82,7 @@
                     <span>Lugares</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{oute('admin.sessoes')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Sessoes</span></a>
             </li>
