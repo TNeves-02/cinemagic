@@ -14,6 +14,7 @@ class SessaoController extends Controller
     public function admin_index(Request $request){
         
         $qry = Sessao::query();
+        
         $data = $request->data ?? '';
         if ($data) {
             $qry->where('data', $data);
@@ -44,6 +45,7 @@ class SessaoController extends Controller
              ->withSalas($salas)
             ->withSessoes($sessoes);
     }
+    
     public function create()
     {
         $sessao = new Sessao();
