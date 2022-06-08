@@ -104,5 +104,34 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
  
      Route::delete('sessoes/{sessao}', [SessaoController::class, 'destroy'])->name('sessoes.destroy');
 
+    //lugares admin //falta terminar
+    Route::get('lugares', [LugarController::class, 'admin_index'])->name('lugares');
 
+    Route::get('lugares/{lugar}/edit', [LugarController::class, 'edit'])->name('lugares.edit');
+
+    Route::get('lugares/{lugar}/view', [LugarController::class, 'view'])->name('lugares.view');
+
+    Route::get('lugares/create', [LugarController::class, 'create'])->name('lugares.create');
+
+    Route::post('lugares', [LugarController::class, 'store'])->name('lugares.store');
+
+    Route::put('lugares/{lugar}', [LugarController::class, 'update'])->name('lugares.update');
+
+    Route::delete('lugares/{lugar}', [LugarController::class, 'destroy'])->name('lugares.destroy');
+
+     
+    //clientes admin
+    Route::get('clientes', [ClienteController::class, 'admin_index'])->name('clientes');
+
+    Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
+
+    Route::get('clientes/{cliente}/view', [ClienteController::class, 'view'])->name('clientes.view');
+
+    Route::get('clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+
+    Route::post('clientes', [ClienteController::class, 'store'])->name('clientes.store');
+
+    Route::put('clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+
+    Route::delete('clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 });
