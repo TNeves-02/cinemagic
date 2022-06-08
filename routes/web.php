@@ -5,6 +5,8 @@ use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\SalaController;
 use App\Http\Controllers\SessaoController;
+use App\Http\Controllers\LugarController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\DashboardController;
 
 
