@@ -51,7 +51,7 @@
 
             <!-- Nav Item -->
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.clientes')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Clientes</span></a>
             </li>
@@ -77,7 +77,7 @@
                     <span>Salas</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.lugares')}}">
                     <i class="fas fa-fw fa-couch"></i>
                     <span>Lugares</span></a>
             </li>

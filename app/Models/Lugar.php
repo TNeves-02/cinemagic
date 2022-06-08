@@ -9,6 +9,7 @@ class Lugar extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'lugares';
     protected $fillable = [
         'sala_id', 'fila', 'posicao'
     ];
@@ -19,7 +20,7 @@ class Lugar extends Model
 
     public function sala()
     {
-        return $this->hasOne(Sala::class,"sala_id","id");
+        return $this->hasOne(Sala::class,"id","sala_id");
         
     }
 }

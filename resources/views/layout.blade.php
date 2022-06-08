@@ -47,6 +47,7 @@
         </div>
         @else
         <div class="avatar-area ms-3">
+            
             <a class="btn btn-light" href="{{ route('login') }}">Login</a>
         </div>
         @endauth
