@@ -14,3 +14,14 @@ footer {
     height: 60px;
   }
 
+.btn-outline-bg {
+    color: #a682d3;
+    background-color: transparent;
+    border-color: #a682d3;
+}
+
+.btn-outline-bg:hover {
+    color: white;
+    background-color: #a682d3;
+    border-color: #a682d3;
+}

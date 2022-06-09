@@ -29,5 +29,4 @@ class Cliente extends Model
         return $this->hasOne(Bilhete::class,'id','cliente_id');
     }
 
-
 }
