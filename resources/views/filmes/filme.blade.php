@@ -45,11 +45,28 @@
         </div>
     </div>
     <br><br><br><br>
-    <form method="GET" action="{{route('admin.filmes')}}" class="form-group">
+    @if ($salas->isEmpty())
+    <hr class="col-lg-7">
+    <div class="col-lg-7 div-center mt-2">
+        <br>
+        <h2>Sem Sessões!</h2>
+    </div>
+    @else
+    <form method="GET" action="{{route('filmes.filme', ['filme' => $filme]
+    
+    
+    
+    
+       
+       
+       ) }}" class="form-group">
         <div class="input-group mt-5">
             <h3 class="col-lg-7 text-center">Sessões</h3>
-            <select class="custom-select" name="genero" id="inputGernero" aria-label="Genero">
-                <option value="">Todos Generos</option>
+            <select class="custom-select" name="data" id="inputGernero" aria-label="Data">
+                <option value="" {{'' == old('data', $selectedData) ? 'selected' : ''}}>Datas</option>
+                @foreach ($datas as $data)
+                    <option value={{$data->data}} {{$data->data == old('data', $selectedData) ? 'selected' : ''}}>{{$data->data}}</option>
+                    @endforeach
             </select>
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
@@ -62,24 +79,31 @@
         <thead class="text-light">
             <tr>
                 <th>Sala</th>
-                <th colspan="3" style="text-align:center;">Horários</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+            
+            @foreach($salas as $sala)
             <tr>
-                <td >Sala 1</td>
-                <td style="text-align:right;">Horario 1</td>
-
-                <td style="text-align:center;">Horario 2</td>
-
-                <td style="text-align:left;">Horario 3</td>
+                <td>{{$sala->nome}}</td>
+                <td>{{$sala->data}}</td>
+                <td >{{$sala->horario_inicio}}</td>
+                <td >
+                <a href="{{route('lugares.index', ['filme' => $filme, 'sala' => $sala->id])}}"
+                    class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-fw fa-ticket me-2"></i>Comprar</a>
+                </td>
             </tr>
+            @endforeach
+            
         </tbody>
     </table>
 
     </div>
 
-
+    @endif
 
     <hr class="col-lg-7 mt-5">
 

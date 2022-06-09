@@ -47,16 +47,57 @@ class FilmeController extends Controller
                 
     }
 
-    public function filmepag(Filme $filme)
+    public function filmepag(Filme $filme, Request $request)
     {
-        $sessoes=Sessao::select('horario_inicio','data')->where('filme_id',$filme->id);
+        $data = $request->data ?? '';
+        $qry = Sessao::query();
+        if ($data) {
+            $qry->where('data', $data);
+        }
+
         $semelhantes = Filme::select('id', 'cartaz_url')->where('id','!=', $filme->id)
                                                 ->where('genero_code', $filme->genero_code)
                                                 ->get();
 
+        if(!$data){ //nao existe data passada no url 
+        $salas = Filme::select('salas.id','salas.nome','sessoes.horario_inicio','sessoes.data')
+                                           ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                                           ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
+                                           ->where('filmes.id','=',$filme->id)
+                                           ->where('sessoes.data', '=', date('Y-m-d', time()))
+                                           ->where('sessoes.horario_inicio', '>=', date('H:i:s', time()))
+                                           ->orWhere([['sessoes.data','>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
+                                           ->orderBy('sessoes.data','asc')
+                                           ->orderBy('sessoes.horario_inicio','asc')
+                                           ->get();
+        }
+        else{ //existe data passada no url
+            $salas = Filme::select('salas.id','salas.nome','sessoes.horario_inicio','sessoes.data')
+                                 ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                                 ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
+                                 ->where('filmes.id','=',$filme->id)
+                                 ->where('sessoes.data', '=', $data)
+                                 ->where('sessoes.horario_inicio', '>=', $data==date('Y-m-d', time()) ? date('H:i:s', time()) : '00:00:00')
+                                 ->orderBy('sessoes.data','asc')
+                                 ->orderBy('sessoes.horario_inicio','asc')
+                                 ->get();
+            }       
+    
+
+        $datas = Filme::select('sessoes.data')
+                                           ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                                           ->where('filmes.id','=',$filme->id)
+                                           ->where('sessoes.data', '=', date('Y-m-d', time()))
+                                           ->orWhere([['sessoes.data', '>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
+                                           ->orderBy('sessoes.data','asc')
+                                           ->distinct()
+                                           ->get();
+                         
         return view('filmes.filme')->withFilme($filme)
                            ->withSemelhantes($semelhantes)
-                           ->withSessoes($sessoes);
+                           ->withDatas($datas)
+                           ->withSelectedData($data)
+                           ->withSalas($salas);
     }
 
     public function bilhete()
