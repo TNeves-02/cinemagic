@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cliente;
+use App\Models\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -12,5 +14,25 @@ class ClienteController extends Controller
         $clientes = $qry->paginate(20);
         return view('clientes.admin')
             ->withClientes($clientes);
+    }
+
+    public function perfil(){
+        $qry = Cliente::query();
+      
+        $cliente = Cliente::all();
+
+        
+        return view('clientes.perfil')
+            ->withCliente($cliente);
+    }
+
+    public function editarPerfil(){
+        $qry = Cliente::query();
+      
+        $cliente = Cliente::all();
+
+        
+        return view('clientes.editar')
+            ->withCliente($cliente);
     }
 }

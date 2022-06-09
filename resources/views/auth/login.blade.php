@@ -7,7 +7,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-white text-dark" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
-                        <div class="mb-md-5 mt-md-2 pb-2">
+                        <div class="mb-md-2 mt-md-2 pb-2">
                             <h2 class="fw-bold mb-4 text-uppercase">{{ __('Login') }}</h2>
                             <hr>
                             <form method="POST" action="{{ route('login') }}">
@@ -34,16 +34,27 @@
                                     {{ __('Remember Me') }}
                                 </div>
 
-                                <button class="btn btn-outline-dark btn-lg px-5 mt-5" type="submit">Login</button>
+                                <button class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" type="submit"><i class="fa-solid fa-user"></i> {{ __('Login') }}</button>
+                                @if (Route::has('register'))
+                                <a class="btn btn-outline-dark btn-lg px-5 mt-3 ms-2" href="{{ route('register') }}"><i class="fa-solid fa-circle-check"></i> {{ __('Registar') }}</a>
+                                @endif
+
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link-dark mt-5" href="{{ route('password.request') }}">
+                                <a class="btn btn-link-dark mt-2" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif
+                                <hr>    
+                                <a class="btn btn-link-dark mt-1" href="{{ route('welcome.index') }}">
+                                    {{ __('Voltar à página inicial') }}
+                                </a>
                             </form>
                         </div>
+                        
                     </div>
+                    
                 </div>
+                
             </div>
         </div>
     </div>
