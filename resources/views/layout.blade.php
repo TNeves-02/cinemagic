@@ -39,7 +39,7 @@
             </ul>
         </div>
         <div class="collapse navbar-collapse justify-content-end mr-5 pr-5">
-            <a class="btn btn btn-outline-bg" id="carbtn" href="#"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> Carrinho</a>
+            <a class="btn btn btn-outline-bg" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> Carrinho</a>
             <div class="dropdown">
                 @auth
                 <button class="dropbtn">
@@ -66,7 +66,7 @@
                     </form>
                 </div>
                 @else
-                <div class="avatar-area ms-2 mp-5 pr-5">
+                <div class="avatar-area ms-2 mp-5 pr-5" style="margin-right: 15px;">
                     <a class="btn btn-outline-light" href="{{ route('login') }}"><i class="fa-solid fa-user"></i> Login</a>
                 </div>
                 @endauth

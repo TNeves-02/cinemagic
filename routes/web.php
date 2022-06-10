@@ -7,6 +7,7 @@ use App\Http\Controllers\SalaController;
 use App\Http\Controllers\SessaoController;
 use App\Http\Controllers\LugarController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 
 
@@ -46,6 +47,8 @@ Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perf
 Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('clientes.editar');
 
 Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
+
+Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {

@@ -32,7 +32,7 @@
                 <div class="sidebar-brand-icon">
                     <img src="/img/navbar/inicial.svg" alt="Logo" class="logo-img">
                 </div>
-                <div class="sidebar-brand-text mx-3">Cinemagic</div>
+                <div class="sidebar-brand-text mx-3"> {{ __('Cinemagic  ') }}</div>
             </a>
 
             <!-- Divider -->
@@ -42,7 +42,7 @@
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
+                    <span> {{ __('Dashboard  ') }}</span>
                 </a>
             </li>
 
@@ -53,38 +53,38 @@
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.clientes')}}">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Clientes</span></a>
+                    <span>{{ __('Clientes  ') }}</span></a>
             </li>
 
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.filmes')}}">
                     <i class="fas fa-fw fa-film"></i>
-                    <span>Filmes</span></a>
+                    <span>{{ __('Filmes  ') }}</span></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.generos')}}">
                     <i class="fas fa-fw fa-clapperboard"></i>
-                    <span>Generos</span></a>
+                    <span>{{ __('Generos  ') }}</span></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-ticket"></i>
-                    <span>Bilhetes</span></a>
+                    <span>{{ __('Bilhetes  ') }}</span></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.salas')}}">
                     <i class="fas fa-fw fa-house-chimney"></i>
-                    <span>Salas</span></a>
+                    <span>{{ __('Salas  ') }}</span></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.lugares')}}">
                     <i class="fas fa-fw fa-couch"></i>
-                    <span>Lugares</span></a>
+                    <span>{{ __('Lugares  ') }}</span></a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.sessoes')}}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Sessoes</span></a>
+                    <span>{{ __('Sessoes  ') }}</span></a>
             </li>
 
 
@@ -117,10 +117,10 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow justify-content-end">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <div class="dropdown justify-content-end">
+                    <div class="dropdown">
                         @auth
                         <button class="dropbtn justify-content-end">
                             <div class="avatar-area ms-3 text-dark"">
