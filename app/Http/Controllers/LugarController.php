@@ -37,20 +37,20 @@ class LugarController extends Controller
         $filas = Lugar::select('fila')->where('sala_id',$sala)->distinct()->get();
         $nlugaresFila = Lugar::select('fila')->where('sala_id',$sala)->groupBy('fila')->count();
         $salaFilme = Sala::Where('id',$sala);
-        $bilhetes = Bilhete::select('lugares.fila','lugares.posicao')
+        $lugaresOcupados = Bilhete::select('lugares.fila','lugares.posicao')
                 ->join('lugares','lugares.id','bilhetes.lugar_id')
                 ->where('sessao_id',$sessao_id)
                 ->where('estado',"usado")
                 ->where('sala_id',$sala)
                 ->get();
-        dd($bilhetes);
+     
         
         return view('lugares.index')
                      ->withFilme($filme)
                      ->withSessao($sessao)
                      ->withSala($salaFilme)
                      ->withFilas($filas)
-                     ->withBilhetes($bilhetes)
+                     ->withLugaresOcp($lugaresOcupados)
                      ->withLugaresTotal($nLugaresTotal)
                      ->withLugaresFila($nlugaresFila);
                     
