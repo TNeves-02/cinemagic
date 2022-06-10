@@ -47,7 +47,6 @@ Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('cl
 
 Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
 
-Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 

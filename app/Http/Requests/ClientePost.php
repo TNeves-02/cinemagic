@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class ClientePost extends FormRequest
 {
@@ -13,7 +14,7 @@ class ClientePost extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class ClientePost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required',
+            'email' => [
+                'required',
+                'email',
+                
+            ],
+            'nif' =>              'nullable|digits:9',
+            'tipo_pagamento' =>   'nullable|in:VISA,PAYPAL,MBWAY',
+            'ref_pagamento' =>    'nullable',
         ];
     }
 }

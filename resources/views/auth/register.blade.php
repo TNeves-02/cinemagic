@@ -44,6 +44,7 @@
                                     </span>
                                     @enderror
                                 </div>
+                                <hr>
                                 <button class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" type="submit"><i class="fa-solid fa-circle-check"></i> {{ __('Registar') }}</button>
                                 <a href="{{ route('login') }}" class="btn btn-outline-dark btn-lg px-5 mt-3 ms-2"><i class="fa-solid fa-arrow-left"></i> {{ __('Voltar') }}</a>                                
                             </form>
