@@ -52,9 +52,11 @@
                     <a class="btn" href="{{ route('clientes.perfil') }}">
                         {{ __('Perfil  ') }}<i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
                     </a>
+                    @if(Auth::user()->tipo != 'C')
                     <a class="btn" href="{{ route('admin.dashboard') }}">
                         {{ __('Dashboard  ') }}<i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
                     </a>
+                    @endif
                     <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         {{ __('Logout  ') }}<i class="fa-solid fa-power-off" id="carbtn-ico ms-3"></i>

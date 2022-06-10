@@ -120,82 +120,80 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @else
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
-                                <img class="img-profile rounded-circle" src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                    <div class="dropdown justify-content-end">
+                        @auth
+                        <button class="dropbtn justify-content-end">
+                            <div class="avatar-area ms-3 text-dark"">
+                                <span class="name-user">{{Auth::user()->name}}</span>
+                                <img class="rounded-circle ms-3" style="width: 50px; height:50px" src="{{Auth::user()->foto_url ? asset('storage/fotos/' . Auth::user()->foto_url) : asset('img/default_img.png') }}">
                             </div>
-                        </li>
-                        @endguest
-                    </ul>
-
-
-                </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    @if (session('alert-msg'))
-                        @include('partials.message')
-                    @endif
-                    @if ($errors->any())
-                        @include('partials.errors-message')
-                    @endif
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <div class="col">
-                            @yield('content')
+                        </button>
+                        <div class="dropdown-content">
+                            <a class="btn" href="{{ route('clientes.perfil') }}">
+                                {{ __('Perfil  ') }}<i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
+                            </a>
+                            <a class="btn" href="{{ route('admin.dashboard') }}">
+                                {{ __('Dashboard  ') }}<i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
+                            </a>
+                            <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout  ') }}<i class="fa-solid fa-power-off" id="carbtn-ico ms-3"></i>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
-
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-
+                        @else
+                        <div class="avatar-area ms-2 mp-5 pr-5">
+                            <a class="btn btn-outline-light" href="{{ route('login') }}"><i class="fa-solid fa-user"></i> Login</a>
+                        </div>
+                        @endauth
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    
-                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);"> Aplicações para Internet - Cinemagic | © 2022 Copyright
-                   
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                @if (session('alert-msg'))
+                @include('partials.message')
+                @endif
+                @if ($errors->any())
+                @include('partials.errors-message')
+                @endif
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
                 </div>
-            </footer>
-            <!-- End of Footer -->
+
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col">
+                        @yield('content')
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0);"> Aplicações para Internet - Cinemagic | © 2022 Copyright
+
+                </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -218,7 +216,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary"  href="{{route('logout')}}" onclick="event.preventDefault();
+                    <a class="btn btn-primary" href="{{route('logout')}}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
@@ -232,9 +230,9 @@
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/bootstrap.js')}}"></script>
     <!-- Core plugin JavaScript-->
-     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
-     <script src="{{asset('js/sb-admin-2.min.js')}}"></script> 
+    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
 </body>
 

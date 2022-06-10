@@ -5,6 +5,7 @@ use App\Models\Cliente;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClientePost;
 
 class ClienteController extends Controller
 {
@@ -16,9 +17,7 @@ class ClienteController extends Controller
             ->withClientes($clientes);
     }
 
-    public function perfil(){
-        $qry = Cliente::query();
-      
+    public function perfil(){      
         $cliente = Cliente::all();
 
         
@@ -27,12 +26,21 @@ class ClienteController extends Controller
     }
 
     public function editarPerfil(){
-        $qry = Cliente::query();
-      
-        $cliente = Cliente::all();
-
+    
         
-        return view('clientes.editar')
-            ->withCliente($cliente);
+
+            return view('clientes.editar');
+    }
+
+    public function update(ClientePost $request,User $user)
+    {
+
+        dd($request);
+        $user->fill($request->validated());
+
+        $user->save();
+        return redirect()->route('cliente.edit')
+            ->with('alert-msg', 'Cliente "' . $user->nome . '" foi alterado com sucesso!')
+            ->with('alert-type', 'success');
     }
 }

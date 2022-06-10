@@ -30,7 +30,7 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <hr>
                                 <button class="btn btn-outline-dark btn-lg px-5 mt-2" type="submit"><i class="fa-solid fa-inbox"></i> {{ __('Send Password Reset Link') }}</button>
                                 <a href="{{ route('login') }}" class="btn btn-outline-dark btn-lg px-5 mt-2"><i class="fa-solid fa-arrow-left"></i> {{ __('Voltar') }}</a>  
                             </form>

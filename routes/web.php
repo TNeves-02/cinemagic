@@ -42,7 +42,11 @@ Route::get('/bilhete', [FilmeController::class, 'bilhete'])->name('bilhetes.inde
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
+
 Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('clientes.editar');
+
+Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
+
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
