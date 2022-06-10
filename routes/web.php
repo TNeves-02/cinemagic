@@ -35,14 +35,19 @@ Route::get('/filmes', [FilmeController::class, 'filmespag'])->name('filmes.index
 
 Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes.filme');
 
-Route::get('/lugares/{filme}/{sala}', [LugarController::class, 'lugares'])->name('lugares.index');
+Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->name('lugares.index');
 
 Route::get('/bilhete', [FilmeController::class, 'bilhete'])->name('bilhetes.index');
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
+
 Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('clientes.editar');
+
+Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
+
+Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho');
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 

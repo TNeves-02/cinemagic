@@ -45,21 +45,14 @@
         </div>
     </div>
     <br><br><br><br>
-    @if ($salas->isEmpty())
+    @if ($sessoes->isEmpty())
     <hr class="col-lg-7">
     <div class="col-lg-7 div-center mt-2">
         <br>
         <h2>Sem Sessões!</h2>
     </div>
     @else
-    <form method="GET" action="{{route('filmes.filme', ['filme' => $filme]
-    
-    
-    
-    
-       
-       
-       ) }}" class="form-group">
+    <form method="GET" action="{{route('filmes.filme', ['filme' => $filme]) }}" class="form-group">
         <div class="input-group mt-5">
             <h3 class="col-lg-7 text-center">Sessões</h3>
             <select class="custom-select" name="data" id="inputGernero" aria-label="Data">
@@ -86,13 +79,13 @@
         </thead>
         <tbody>
             
-            @foreach($salas as $sala)
+            @foreach($sessoes as $sessao)
             <tr>
-                <td>{{$sala->nome}}</td>
-                <td>{{$sala->data}}</td>
-                <td >{{$sala->horario_inicio}}</td>
+                <td>{{$sessao->nome}}</td>
+                <td>{{$sessao->data}}</td>
+                <td >{{$sessao->horario_inicio}}</td>
                 <td >
-                <a href="{{route('lugares.index', ['filme' => $filme, 'sala' => $sala->id])}}"
+                <a href="{{route('lugares.index', ['filme' => $filme, 'sessao' => $sessao->id])}}"
                     class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-fw fa-ticket me-2"></i>Comprar</a>
                 </td>
             </tr>

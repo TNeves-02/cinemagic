@@ -60,7 +60,7 @@ class FilmeController extends Controller
                                                 ->get();
 
         if(!$data){ //nao existe data passada no url 
-        $salas = Filme::select('salas.id','salas.nome','sessoes.horario_inicio','sessoes.data')
+        $sessoes = Filme::select('sessoes.id','salas.nome','sessoes.horario_inicio','sessoes.data')
                                            ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
                                            ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
                                            ->where('filmes.id','=',$filme->id)
@@ -72,7 +72,7 @@ class FilmeController extends Controller
                                            ->get();
         }
         else{ //existe data passada no url
-            $salas = Filme::select('salas.id','salas.nome','sessoes.horario_inicio','sessoes.data')
+            $sessoes = Filme::select('sessoes.id','salas.nome','sessoes.horario_inicio','sessoes.data')
                                  ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
                                  ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
                                  ->where('filmes.id','=',$filme->id)
@@ -81,23 +81,24 @@ class FilmeController extends Controller
                                  ->orderBy('sessoes.data','asc')
                                  ->orderBy('sessoes.horario_inicio','asc')
                                  ->get();
-            }       
-    
-
-        $datas = Filme::select('sessoes.data')
-                                           ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
-                                           ->where('filmes.id','=',$filme->id)
-                                           ->where('sessoes.data', '=', date('Y-m-d', time()))
-                                           ->orWhere([['sessoes.data', '>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
-                                           ->orderBy('sessoes.data','asc')
-                                           ->distinct()
-                                           ->get();
+            }    
+            
+            $datas = Filme::select('sessoes.data')
+            ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+            ->where('filmes.id','=',$filme->id)
+            ->where('sessoes.data', '=', date('Y-m-d', time()))
+            ->orWhere([['sessoes.data', '>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
+            ->orderBy('sessoes.data','asc')
+            ->distinct()
+            ->get();
                          
         return view('filmes.filme')->withFilme($filme)
                            ->withSemelhantes($semelhantes)
                            ->withDatas($datas)
                            ->withSelectedData($data)
-                           ->withSalas($salas);
+                           ->withSessoes($sessoes);
+
+       
     }
 
     public function bilhete()
