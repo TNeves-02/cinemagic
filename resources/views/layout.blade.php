@@ -26,20 +26,17 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-dark">
         <img src="{{url('img/navbar/inicial.svg')}}" id="logo-img-navbar">
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a class="navbar-brand mx-center text-white" id="navbar-center" href="{{route('welcome.index')}}"> Cinemagic </a>
+        <a class="navbar-brand mx-center text-white" id="navbar-center" href="{{route('welcome.index')}}"> {{ __('Cinemagic  ') }} </a>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">Filmes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">Sessões</a>
+                    <a class="navbar-brand mx-center text-white" href="{{route('filmes.index')}}">{{ __('Filme  ') }}</a>
                 </li>
             </ul>
         </div>
         <div class="collapse navbar-collapse justify-content-end mr-5 pr-5">
-            <a class="btn btn btn-outline-bg" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> Carrinho</a>
+            <a class="btn btn btn-outline-bg" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> {{ __('Carrinho  ') }}</a>
             <div class="dropdown">
                 @auth
                 <button class="dropbtn">
@@ -50,16 +47,20 @@
                 </button>
                 <div class="dropdown-content">
                     <a class="btn" href="{{ route('clientes.perfil') }}">
-                        {{ __('Perfil  ') }}<i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
+                        {{ __('Perfil  ') }} <i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
                     </a>
                     @if(Auth::user()->tipo != 'C')
                     <a class="btn" href="{{ route('admin.dashboard') }}">
-                        {{ __('Dashboard  ') }}<i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
+                        {{ __('Dashboard  ') }} <i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
+                    </a>
+                    @elseif(Auth::user()->tipo == 'C')
+                    <a class="btn" href="{{ route('bilhetes.index') }}">
+                        {{ __('Histórico') }} <i class="fa-solid fa-clock" id="carbtn-ico ms-3"></i>
                     </a>
                     @endif
                     <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout  ') }}<i class="fa-solid fa-power-off" id="carbtn-ico ms-3"></i>
+                        {{ __('Logout  ') }} <i class="fa-solid fa-power-off" id="carbtn-ico ms-3"></i>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

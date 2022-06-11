@@ -37,17 +37,18 @@
                             </div>
                         </div>
                         <div class="filme_details_btn ms-5">
-                            <button type="button" class="btn btn-outline-bg btn-lg btn-block" onclick="window.location.href='#"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
+                            <button type="button" class="btn btn-outline-bg btn-lg btn-block" onclick="window.location.href='#sessao'"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="sessao"></div>
     <br><br><br><br>
     @if ($sessoes->isEmpty())
-    <hr class="col-lg-7">
-    <div class="col-lg-7 div-center mt-2">
+    <hr class="col-lg-7 mt-5">
+    <div class="col-lg-7 div-center mt-3">
         <br>
         <h2>Sem Sessões!</h2>
     </div>
