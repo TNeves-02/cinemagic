@@ -10,7 +10,7 @@
     <h5>Numero total de lugares da sala: {{$lugaresTotal}}</h5>
     <h5>Numero total de lugares por ocupar: {{$lugaresNaoOcupados}}</h5>
 
-    <form action="{{route('carrinho.store', ['filme' => $filme, 'sessao' => $sessao])}}" method="post" >
+    <form action="{{route('carrinho.store.compra', ['filme' => $filme, 'sessao' => $sessao])}}" method="post" >
         @csrf
 
     <table>
@@ -31,9 +31,7 @@
                           @endif
                      @endforeach
                         @if (!$lugarOcupado)
-                       
-                            <input type="checkbox" name="lugar" value="{{$fila->fila}}{{$j}}">
-                           
+                            <input type="checkbox" name="lugar[]" value="{{$fila->fila}}{{$j}}">
                         @endif
                 </td>
                @endfor

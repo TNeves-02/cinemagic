@@ -31,5 +31,3 @@ class Recibo extends Model
         return $this->hasMany(Bilhete::class,"id","recibo_id");
     }
 }
-
-//certo

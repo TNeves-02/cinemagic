@@ -36,6 +36,8 @@ class SessaoController extends Controller
         $salas = Sala::all(); 
 
         $sessoes = $qry->paginate(20);
+
+        
         return view('sessoes.admin')
              ->withSelectedData($data)
              ->withSelectedHora($horario_inicio)

@@ -51,7 +51,13 @@ Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clien
 
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 
-Route::post('carrinho/{filme}/{sessao}', [CarrinhoController::class, 'store'])->name('carrinho.store');
+Route::post('carrinho/{filme}/{sessao}', [CarrinhoController::class, 'store_compra'])->name('carrinho.store.compra');
+
+
+Route::delete('carrinho/{sessao}', [CarrinhoController::class, 'destroy_carrinho_linha'])->name('carrinho.destroy_linha');
+
+Route::post('carrinho', [CarrinhoController::class, 'store_carrinho'])->name('carrinho.store.carrinho');
+Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 
 
 
