@@ -8,20 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Bilhete extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
     protected $fillable = [
-        'recibo_id','cliente_id','sessao_id','lugar_id','preco_sem_iva','estado'
+        'recibo_id',
+        'cliente_id',
+        'sessao_id',
+        'lugar_id',
+        'preco_sem_iva',
+        'estado',
+        'bilhete_pdf_url', // analisar mais tarde
+        'bilhete_qrcode_url'
     ];
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,"id","cliente_id");
+        return $this->belongsTo(Cliente::class,"cliente_id","id");
     }
     
     public function recibo()
     {
-        return $this->belongsTo(Recibo::class,"id","recibo_id");
+        return $this->belongsTo(Recibo::class,"recibo_id","id");
     }
 
     public function lugar()
@@ -31,7 +36,7 @@ class Bilhete extends Model
 
     public function sessao()
     {
-        return $this->hasOne(Sessao::class,"id","sessao_id");
+        return $this->hasOne(Sessao::class,"sessao_id","id");
     }
 
 }

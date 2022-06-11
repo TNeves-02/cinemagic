@@ -8,9 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Recibo extends Model
 {
     use HasFactory;
-    public $timestamps = false;
     protected $fillable = [
-        'cliente_id', 'data', 'preco_total_sem_iva', 'iva', 'preco_total_com_iva','nif','nome_cliente','tipo_pagamento','ref_pagamento','recibo_pdf_url'
+        'cliente_id',
+        'data', 
+        'preco_total_sem_iva', 
+        'iva', 
+        'preco_total_com_iva',
+        'nif',
+        'nome_cliente',
+        'tipo_pagamento',
+        'ref_pagamento',
+        'recibo_pdf_url'
     ];
 
     public function cliente()
@@ -20,6 +28,8 @@ class Recibo extends Model
 
     public function bilhete()
     {
-        return $this->hasMany(Cliente::class,"recibo_id","id");
+        return $this->hasMany(Bilhete::class,"id","recibo_id");
     }
 }
+
+//certo

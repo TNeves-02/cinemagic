@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Sessao extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
     protected $table = 'sessoes';
     protected $fillable = [
-        'filme_id', 'sala_id', 'data','horario_inicio'
+        'filme_id', 
+        'sala_id', 
+        'data',
+        'horario_inicio'
     ];
 
     public function filme()

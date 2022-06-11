@@ -10,15 +10,5 @@ use Illuminate\Support\Facades\Auth;
 
 class BilheteController extends Controller
 {
-    public function index()
-    {
-        //por ano
-        $bilhetes =  Recibo::where('cliente_id','=',Auth::id())
-                            
-                            ->get();
-        dd($bilhetes);       
-
-        return view('bilhetes.index');
-    }
 
 }

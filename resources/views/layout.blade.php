@@ -54,7 +54,7 @@
                         {{ __('Dashboard  ') }} <i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
                     </a>
                     @elseif(Auth::user()->tipo == 'C')
-                    <a class="btn" href="{{ route('bilhetes.index') }}">
+                    <a class="btn" href="{{ route('recibos.index') }}">
                         {{ __('Histórico') }} <i class="fa-solid fa-clock" id="carbtn-ico ms-3"></i>
                     </a>
                     @endif

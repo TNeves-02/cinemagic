@@ -10,8 +10,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BilheteController;
-
-
+use App\Http\Controllers\ReciboController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +39,7 @@ Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes
 
 Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->name('lugares.index');
 
-Route::get('/bilhete', [BilheteController::class, 'bilhete'])->name('bilhetes.index');
+Route::get('/historico', [ReciboController::class, 'index'])->name('recibos.index');
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -155,7 +154,5 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
      Route::put('clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
  
      Route::delete('clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
-
-
 
 });

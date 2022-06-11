@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cliente extends Model
 {
-    use HasFactory;
-
-    public $timestamps = false;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
-        'nif', 'tipo_pagamento', 'ref_pagamento',
+        'nif', 
+        'tipo_pagamento', 
+        'ref_pagamento',
     ];
 
     public function user()
@@ -21,12 +22,12 @@ class Cliente extends Model
 
     public function recibo()
     {
-        return $this->hasOne(Recibo::class,'id','cliente_id');
+        return $this->hasOne(Recibo::class,'cliente_id','id');
     }
 
     public function bilhete()
     {
-        return $this->hasOne(Bilhete::class,'id','cliente_id');
+        return $this->hasOne(Bilhete::class,'cliente_id','id');
     }
 
 }

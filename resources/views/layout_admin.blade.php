@@ -77,11 +77,6 @@
                     <span>{{ __('Salas  ') }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.lugares')}}">
-                    <i class="fas fa-fw fa-couch"></i>
-                    <span>{{ __('Lugares  ') }}</span></a>
-            </li>
-            <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.sessoes')}}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>{{ __('Sessoes  ') }}</span></a>
