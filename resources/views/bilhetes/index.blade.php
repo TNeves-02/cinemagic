@@ -2,101 +2,48 @@
 
 @section('content')
 
-<br><br><br><br><br>
+<section class="vh-100 mt-5">
+    <div class="container py-5 h-100 mt-5 mw-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 w-100">
+            <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card bg-white text-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-2 mt-md-2 pb-2 w-100">
+                            <h2 class="fw-bold mb-4 text-uppercase">{{ __('Histórico') }}</h2>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>{{ __('Filme') }}</th>
+                                        <th>{{ __('Data') }}</th>
+                                        <th>{{ __('Preço') }}</th>
+                                        <th>{{ __('Nº de bilhetes') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($bilhetes as $bilhete)
+                                    <tr>
+                                        <td>{{$bilhete->id}}</td>
+                                       
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
-<section class="filme-details spad">
-    <div class="container">
-        <div class="filme_details_content">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="filme_details_pic">
-                        <img class="filme_details_pic" src="https://i.pinimg.com/736x/1a/1f/88/1a1f88dad9e014a86422b54a506480ed.jpg" alt="" />
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="filme_details_text">
-                        <div class="filme_details_title">
-                            <h3>Titulo</h3>
-                            <span>Genero</span>
+                            <hr>
+                            <a class="btn btn-outline-dark btn-lg mt-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
+                                {{ __('Página inicial') }}
+                            </a>
+
                         </div>
-                        
+
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
 </section>
-<div class="form-body">
-        <div class="row">
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <h3>Register Today</h3>
-                        <p>Fill in the data below.</p>
-                        <form class="requires-validation" novalidate>
-
-                            <div class="col-md-12">
-                               <input class="form-control" type="text" name="name" placeholder="Full Name" required>
-                               <div class="valid-feedback">Username field is valid!</div>
-                               <div class="invalid-feedback">Username field cannot be blank!</div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
-                                 <div class="valid-feedback">Email field is valid!</div>
-                                 <div class="invalid-feedback">Email field cannot be blank!</div>
-                            </div>
-
-                           <div class="col-md-12">
-                                <select class="form-select mt-3" required>
-                                      <option selected disabled value="">Position</option>
-                                      <option value="jweb">Junior Web Developer</option>
-                                      <option value="sweb">Senior Web Developer</option>
-                                      <option value="pmanager">Project Manager</option>
-                               </select>
-                                <div class="valid-feedback">You selected a position!</div>
-                                <div class="invalid-feedback">Please select a position!</div>
-                           </div>
-
-
-                           <div class="col-md-12">
-                              <input class="form-control" type="password" name="password" placeholder="Password" required>
-                               <div class="valid-feedback">Password field is valid!</div>
-                               <div class="invalid-feedback">Password field cannot be blank!</div>
-                           </div>
-
-
-                           <div class="col-md-12 mt-3">
-                            <label class="mb-3 mr-1" for="gender">Gender: </label>
-
-                            <input type="radio" class="btn-check" name="gender" id="male" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="male">Male</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="female" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="female">Female</label>
-
-                            <input type="radio" class="btn-check" name="gender" id="secret" autocomplete="off" required>
-                            <label class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
-                               <div class="valid-feedback mv-up">You selected a gender!</div>
-                                <div class="invalid-feedback mv-up">Please select a gender!</div>
-                            </div>
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                          <label class="form-check-label">I confirm that all data are correct</label>
-                         <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
-                        </div>
-                  
-
-                            <div class="form-button mt-3">
-                                <button id="submit" type="submit" class="btn btn-comprar">Register</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 @endsection
