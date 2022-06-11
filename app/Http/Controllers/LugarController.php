@@ -29,32 +29,26 @@ class LugarController extends Controller
             ->withSalas($salas);
     }
 
-    public function lugares(Filme $filme , $sessao_id)
+    public function lugares(Filme $filme , $sessao_id )
     {
-        $sala = Sessao::select('sala_id')->where('id',$sessao_id)->first()->sala_id ?? null ;
-        $sessao = Sessao::where('id',$sessao_id)->first();
-        $nLugaresTotal = Lugar::where('sala_id',$sala)->count();
-        $filas = Lugar::select('fila')->where('sala_id',$sala)->distinct()->get();
-        $nlugaresFila = Lugar::select('fila')->where('sala_id',$sala)->groupBy('fila')->count();
-        $salaFilme = Sala::Where('id',$sala);
-        $lugaresOcupados = Bilhete::select('lugares.fila','lugares.posicao')
-                ->join('lugares','lugares.id','bilhetes.lugar_id')
-                ->where('sessao_id',$sessao_id)
-                ->where('estado',"usado")
-                ->where('sala_id',$sala)
-                ->get();
-     
         
+
+        $bilhetes = Bilhete::where('sessao_id',$sessao_id)->where('estado',"nao usado")->get();
+        $sala_id = Sessao::select('sala_id')->where('id',$sessao_id)->first()->sala_id ?? null ;
+        $nlugaresFila = Lugar::select('fila')->where('sala_id',$sala_id)->groupBy('fila')->count();
+        $sessao = Sessao::where('id',$sessao_id)->first();
+        $filas = Lugar::select('fila')->where('sala_id',$sala_id)->distinct()->get();
+        $nLugaresTotal = Lugar::where('sala_id',$sala_id)->count();
+        $lugaresNaoocupados = $nLugaresTotal - count($bilhetes);
         return view('lugares.index')
-                     ->withFilme($filme)
-                     ->withSessao($sessao)
-                     ->withSala($salaFilme)
-                     ->withFilas($filas)
-                     ->withLugaresOcp($lugaresOcupados)
-                     ->withLugaresTotal($nLugaresTotal)
-                     ->withLugaresFila($nlugaresFila);
+                     ->withLugaresFila($nlugaresFila)
+                    ->withFilme($filme)
+                    ->withBilhetes($bilhetes)
+                    ->withFilas($filas)
+                    ->withSessao($sessao)
+                    ->withLugaresTotal($nLugaresTotal)
+                    ->withLugaresNaoOcupados($lugaresNaoocupados);
                     
            
     }
-
 }

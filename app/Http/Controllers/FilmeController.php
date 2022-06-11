@@ -21,7 +21,7 @@ class FilmeController extends Controller
         */
         $filmes = $qry->paginate(10);
         $generos = Genero::all();
-        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();                                  
+        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();                               
 
         return view('welcome.index')->withFilmes($filmes)
                                     ->withGeneros($generos)
@@ -40,6 +40,7 @@ class FilmeController extends Controller
         $generos = Genero::all();
         
         $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
+  
       
         return view('filmes.index')->withFilmes($filmes)
                                    ->withGeneros($generos)
@@ -84,13 +85,12 @@ class FilmeController extends Controller
             }    
             
             $datas = Filme::select('sessoes.data')
-            ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
-            ->where('filmes.id','=',$filme->id)
-            ->where('sessoes.data', '=', date('Y-m-d', time()))
-            ->orWhere([['sessoes.data', '>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
-            ->orderBy('sessoes.data','asc')
-            ->distinct()
-            ->get();
+                             ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                             ->where([['sessoes.data', '=', date('Y-m-d', time())],['sessoes.horario_inicio', '>=', date('H:i:s', time())],['filmes.id','=',$filme->id]])
+                             ->orWhere([['sessoes.data', '>', date('Y-m-d', time())],['filmes.id','=',$filme->id]])
+                             ->orderBy('sessoes.data','asc')
+                             ->distinct()
+                             ->get();
                          
         return view('filmes.filme')->withFilme($filme)
                            ->withSemelhantes($semelhantes)

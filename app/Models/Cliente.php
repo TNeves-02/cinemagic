@@ -11,7 +11,7 @@ class Cliente extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'nif', 'tipo_pagamento', 'ref_pagamento'
+        'nif', 'tipo_pagamento', 'ref_pagamento',
     ];
 
     public function user()

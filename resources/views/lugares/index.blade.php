@@ -7,34 +7,42 @@
     <h1>{{$filme->titulo}} - Sessao {{$sessao->id}}</h1>
     <h3>{{$sessao->horario_inicio}}</h3>
 
-    <h5>Numero total de lugares: {{$lugaresTotal}}</h5>
-    <h5>Lugares Ocupados: {{$lugaresTotal}}</h5>
+    <h5>Numero total de lugares da sala: {{$lugaresTotal}}</h5>
+    <h5>Numero total de lugares por ocupar: {{$lugaresNaoOcupados}}</h5>
 
-    @foreach ($lugaresOcp as $lugar)
-        <h5>{{$lugar->fila}} - {{$lugar->posicao}}</h5>
-    @endforeach
-    <h1>{{$lugaresOcp}}</h1>
+    <form action="{{route('carrinho.store', ['filme' => $filme, 'sessao' => $sessao])}}" method="post" >
+        @csrf
+
     <table>
-    @foreach ($filas as $fila)
+      @foreach ($filas as $fila)   
             <tr>
-            @for ($j = 1; $j < $lugaresFila+1; $j++)
+                @for ($j = 1; $j < $lugaresFila+1; $j++)
                 <td>
-                    @foreach ($lugaresOcp as $lugar)
-                          @if ($fila->fila== $lugar->fila && $j== $lugar->posicao)
-                             <img src="{{asset('img/Escolhido.png')}}"  alt="" style="height: 30px">
-                          @else
-                          <input type="checkbox" name="lugar" id="lugar{{$fila->fila}}{{$j}}">
+                    @php
+                    $lugarOcupado = false;
+                  @endphp
+                     @foreach ($bilhetes as $bilhete)
+                         
+                          @if ($bilhete->lugar->fila == $fila->fila && $bilhete->lugar->posicao == $j)
+                          @php
+                              $lugarOcupado = true;
+                          @endphp
+                               <img src="{{asset('img/Ocupado.png')}}"  alt="" style="height: 30px">
                           @endif
                      @endforeach
-                     
-                     <input type="checkbox" name="lugar" id="lugar{{$fila->fila}}{{$j}}">
-                   
+                        @if (!$lugarOcupado)
+                       
+                            <input type="checkbox" name="lugar" value="{{$fila->fila}}{{$j}}">
+                           
+                        @endif
                 </td>
-            @endfor
+               @endfor
             </tr>
       @endforeach
     </table>
-    
+    <input type="submit" value="Comprar bilhete(s)">
+</form>
+
 </div>
 
 @endsection

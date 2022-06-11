@@ -11,27 +11,27 @@ class Bilhete extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'recibo_id', 'cliente_id', 'sessao_id','lugar_id','preco_sem_iva','estado'
+        'recibo_id','cliente_id','sessao_id','lugar_id','preco_sem_iva','estado'
     ];
 
     public function cliente()
     {
-        return $this->belongsTo(Cliente::class,"clinte","id");
+        return $this->belongsTo(Cliente::class,"id","cliente_id");
     }
     
     public function recibo()
     {
-        return $this->belongsTo(Recibo::class,"recibo_id","id");
+        return $this->belongsTo(Recibo::class,"id","recibo_id");
     }
 
     public function lugar()
     {
-        return $this->hasOne(Lugar::class,"lugar_id","id");
+        return $this->hasOne(Lugar::class,"id","lugar_id");
     }
 
     public function sessao()
     {
-        return $this->hasOne(Sessao::class,"sessao_id","id");
+        return $this->hasOne(Sessao::class,"id","sessao_id");
     }
 
 }

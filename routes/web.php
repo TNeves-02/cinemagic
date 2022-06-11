@@ -9,6 +9,8 @@ use App\Http\Controllers\LugarController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BilheteController;
+
 
 
 /*
@@ -38,7 +40,7 @@ Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes
 
 Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->name('lugares.index');
 
-Route::get('/bilhete', [FilmeController::class, 'bilhete'])->name('bilhetes.index');
+Route::get('/bilhete', [BilheteController::class, 'bilhete'])->name('bilhetes.index');
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -49,6 +51,10 @@ Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('cl
 Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
 
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
+
+Route::post('carrinho/{filme}/{sessao}', [CarrinhoController::class, 'store'])->name('carrinho.store');
+
+
 
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
