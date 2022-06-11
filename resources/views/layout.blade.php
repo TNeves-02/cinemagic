@@ -36,7 +36,7 @@
             </ul>
         </div>
         <div class="collapse navbar-collapse justify-content-end mr-5 pr-5">
-            <a class="btn btn btn-outline-bg" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> {{ __('Carrinho  ') }}</a>
+            <a class="btn btn btn-outline-light" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> {{ __('Carrinho  ') }}</a>
             <div class="dropdown">
                 @auth
                 <button class="dropbtn">

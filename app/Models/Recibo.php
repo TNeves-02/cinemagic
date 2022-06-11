@@ -28,6 +28,6 @@ class Recibo extends Model
 
     public function bilhete()
     {
-        return $this->hasMany(Bilhete::class,"id","recibo_id");
+        return $this->hasMany(Bilhete::class,"recibo_id","id");
     }
 }

@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="filme_details_btn ms-5">
-                            <button type="button" class="btn btn-outline-bg btn-lg btn-block" onclick="window.location.href='#sessao'"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
+                            <button type="button" class="btn btn-outline-light btn-lg btn-block" onclick="window.location.href='#sessao'"><i class="fas fa-fw fa-ticket me-2"></i>Bilhetes</button>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <td >{{$sessao->horario_inicio}}</td>
                 <td >
                 <a href="{{route('lugares.index', ['filme' => $filme, 'sessao' => $sessao->id])}}"
-                    class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fas fa-fw fa-ticket me-2"></i>Comprar</a>
+                    class="btn btn-outline-light btn-sm" role="button" aria-pressed="true"><i class="fas fa-fw fa-ticket me-2"></i>Comprar</a>
                 </td>
             </tr>
             @endforeach

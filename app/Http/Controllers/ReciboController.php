@@ -11,12 +11,16 @@ class ReciboController extends Controller
 {
     public function index()
     {
-        $recibos =  Recibo::select('*')
-                            ->where('cliente_id',Auth::id())
-                            //->paginate(20);
+        $recibos =  Recibo::where('cliente_id',Auth::id())
                             ->get();
-        dd($recibos);
+                   
+        
 
+        foreach ($recibos as $recibo) {
+        
+            dd($recibo->bilhete[0]->id);
+            
+        }
         return view('recibos.index')->withRecibos($recibos);
                     
     }
