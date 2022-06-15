@@ -22,10 +22,6 @@ use App\Http\Controllers\ReciboController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
 
 Auth::routes();
 
@@ -41,8 +37,6 @@ Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->na
 
 Route::get('/historico', [ReciboController::class, 'index'])->name('recibos.index');
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
-
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
 
 Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('clientes.editar');
@@ -51,16 +45,18 @@ Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clien
 
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 
-Route::post('carrinho/{filme}/{sessao}', [CarrinhoController::class, 'store_compra'])->name('carrinho.store.compra');
-
-
 Route::delete('carrinho/{sessao}', [CarrinhoController::class, 'destroy_carrinho_linha'])->name('carrinho.destroy_linha');
 
-Route::post('carrinho', [CarrinhoController::class, 'store_carrinho'])->name('carrinho.store.carrinho');
 Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 
+//confirmação de carrinho e compra de carrinho necessitam de login
+Route::middleware('auth')->group(function () {
 
+    Route::post('carrinho/{filme}/{sessao}', [CarrinhoController::class, 'store_compra'])->name('carrinho.store.compra');
 
+    Route::post('carrinho', [CarrinhoController::class, 'store_carrinho'])->name('carrinho.store.carrinho');
+
+});
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 

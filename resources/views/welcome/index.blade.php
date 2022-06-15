@@ -25,52 +25,65 @@
           <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[2]->cartaz_url}}" alt="movie">
         </a>
       </label>
-
     </div>
   </div>
 </div>
-
-<div class="container-movie" style="background-color: #272829;">
-  <p>Proximas Sessões</p>
-</div>
-
 <br><br><br>
 
-<div class="container-movie" style="background-color: #272829;">
-  <p>Filmes Mais vistos</p>
-  <!--Carousel Wrapper-->
-  <!-- Top content 
+<h2 class="m-Sessoes">Próximas Sessões</h2>
+<hr class="col-lg-8">
+<div class="col-lg-8 div-center mt-2">
+  <table class="table table-striped table-dark text-light">
+      <thead class="text-light">
+          <tr>
+              <th>Nome do Filme</th>
+              <th>Sala</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          @foreach ($proximasSessoes as $sessao)
+          <tr>
+              <td><a href="{{route('filmes.filme', $sessao)}}" style="text-decoration:none; color:white" aria-pressed="true">{{$sessao->titulo}}</a></td>
+              <td>{{$sessao->nome}}</td>
+              <td>{{$sessao->data}}</td>
+              <td >{{$sessao->horario_inicio}}</td>
+              <td >
+              <a href="{{route('lugares.index', ['filme' => $sessao, 'sessao' => $sessao->sessionId])}}" class="btn btn-outline-light btn-sm" role="button" aria-pressed="true"><i class="fas fa-fw fa-ticket me-2"></i>Comprar</a>
+              </td>
+          </tr>
+          @endforeach
+      </tbody>
+  </table>
+</div>
+<hr class="col-lg-8">
+<br><br><br>
+<h2 class="m-Vistos">Filmes Mais Vistos</h2>
+<div class="carousel">
   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="carousel slide multi-item-carousel" id="theCarousel">
-          <div class="carousel-inner">
-            <div class="item active">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
-            <div class="item">
-              <div class="col-xs-4"><a href="#1"><img src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" class="img-responsive"></a></div>
-            </div>
+    <input type="radio" name="slider2" id="itemMaisVistos-1" checked>
+    <input type="radio" name="slider2" id="itemMaisVistos-2">
+    <input type="radio" name="slider2" id="itemMaisVistos-3">
+    <div class="cards">
+      <label class="card-carousel" for="itemMaisVistos-1" id="movieMaisVistos-1">
+        <a href="{{route('filmes.filme', $maisVistos[0])}}">
+          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[0]->cartaz_url}}" alt="movie">
+        </a>
+      </label>
+      <label class="card-carousel" for="itemMaisVistos-2" id="movieMaisVistos-2">
+        <a href="{{route('filmes.filme', $maisVistos[1])}}">
+          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[1]->cartaz_url}}" alt="movie">
+        </a>
+      </label>
+      <label class="card-carousel" for="itemMaisVistos-3" id="movieMaisVistos-3">
+        <a href="{{route('filmes.filme', $maisVistos[2])}}">
+          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[2]->cartaz_url}}" alt="movie">
+        </a>
+      </label>
 
-            <!--  Example item end 
-          </div>
-          <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-          <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-        </div>
-      </div>
     </div>
-  </div>-->
+  </div>
 </div>
 @endsection

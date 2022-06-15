@@ -8,24 +8,38 @@ use App\Models\Genero;
 use App\Models\Bilhete;
 use App\Models\Sessao;
 use App\Http\Requests\FilmePost;
+use DB;
 
 class FilmeController extends Controller
 {
     public function index()
     {
         $qry = Filme::query();
-        /*
-        if ($curso) {
-            $qry->where('curso', $curso);
-        }
-        */
         $filmes = $qry->paginate(10);
         $generos = Genero::all();
-        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();                               
+        $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();
+        $maisVistos = Filme::select('filmes.*')
+                        ->join('sessoes','filmes.id','=','sessoes.filme_id')
+                        ->groupBy('filmes.id')
+                        ->orderByRaw("COUNT('sessoes.id') desc")
+                        ->take(3)
+                        ->get();     
+
+        $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
+                            ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                            ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
+                            ->where('sessoes.data', '>=', date('Y-m-d', time()))
+                            ->where('sessoes.horario_inicio', '>=', date('H:i:s', time()))
+                            ->orderBy('sessoes.data','asc')
+                            ->orderBy('sessoes.horario_inicio','asc')
+                            ->take(25)
+                            ->get();
 
         return view('welcome.index')->withFilmes($filmes)
                                     ->withGeneros($generos)
-                                    ->withUltLancamentos($ultLancamentos);
+                                    ->withUltLancamentos($ultLancamentos)
+                                    ->withMaisVistos($maisVistos)
+                                    ->withProximasSessoes($proximasSessoes);
     }
 
     public function filmespag()
