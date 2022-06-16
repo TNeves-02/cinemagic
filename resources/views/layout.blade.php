@@ -46,17 +46,19 @@
                     </div>
                 </button>
                 <div class="dropdown-content">
-                    <a class="btn" href="{{ route('clientes.perfil') }}">
-                        {{ __('Perfil  ') }} <i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
-                    </a>
+                    @if(Auth::user()->tipo!="F")
+                        <a class="btn" href="{{ route('clientes.perfil') }}">
+                            {{ __('Perfil  ') }} <i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
+                        </a>
+                    @endif
                     @if(Auth::user()->tipo != 'C')
-                    <a class="btn" href="{{ route('admin.dashboard') }}">
-                        {{ __('Dashboard  ') }} <i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
-                    </a>
+                        <a class="btn" href="{{ route('admin.dashboard') }}">
+                            {{ __('Dashboard  ') }} <i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
+                        </a>
                     @elseif(Auth::user()->tipo == 'C')
-                    <a class="btn" href="{{ route('recibos.index') }}">
-                        {{ __('Histórico') }} <i class="fa-solid fa-clock" id="carbtn-ico ms-3"></i>
-                    </a>
+                        <a class="btn" href="{{ route('recibos.index') }}">
+                            {{ __('Histórico') }} <i class="fa-solid fa-clock" id="carbtn-ico ms-3"></i>
+                        </a>
                     @endif
                     <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -3,7 +3,9 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-3">
-        <a href="{{route('admin.filmes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo Filme</a>
+        @can('create', App\Models\filme::class)
+            <a href="{{route('admin.filmes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo Filme</a>
+        @endcan
     </div>
     <div class="col-9">
         <form method="GET" action="{{route('admin.filmes')}}" class="form-group">
@@ -37,27 +39,31 @@
             <td>{{$filme->titulo}}</td>
             <td>{{$filme->genero->nome}}</td>
             <td>{{$filme->ano}}</td>
-            <td>
+            @can('update', $filme)
+                <td>
                 <a href="{{route('admin.filmes.edit', ['filme' => $filme])}}"
                     class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i></a>
-             </td>
-             <td>
-                <a href="{{route('admin.filmes.view', ['filme' => $filme])}}"
-                    class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i></a>
-             </td>
-                <td>
-                <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}"" method="POST">
-                    @csrf
-                    @method("DELETE")        
-                    <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </form>
                 </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+            @endcan
+            <td>
+               <a href="{{route('admin.filmes.view', ['filme' => $filme])}}"
+                   class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i></a>
+            </td>
+            @can('delete', $filme)  
+                <td>
+                    <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}"" method="POST">
+                        @csrf
+                        @method("DELETE")        
+                        <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </form>
+                </td>
+            @endcan
+        </tr>
+    @endforeach
+    </tbody>
+</table>
     
 {{ $filmes->withQueryString()->links() }}
 @endsection

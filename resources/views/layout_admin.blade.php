@@ -38,16 +38,17 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item ">
-                <a class="nav-link" href="{{route('admin.dashboard')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span> {{ __('Dashboard  ') }}</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
+            @if(Auth::user()->tipo=="A")
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.dashboard')}}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span> {{ __('Dashboard  ') }}</span>
+                    </a>
+                </li>
+        
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+            @endif
             <!-- Nav Item -->
             <li class="nav-item ">
                 <a class="nav-link" href="{{route('admin.clientes')}}">
@@ -123,9 +124,11 @@
                             </div>
                         </button>
                         <div class="dropdown-content">
-                            <a class="btn" href="{{ route('clientes.perfil') }}">
-                                {{ __('Perfil  ') }}<i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
-                            </a>
+                            @if(Auth::user()->tipo!="F")
+                                <a class="btn" href="{{ route('clientes.perfil') }}">
+                                    {{ __('Perfil  ') }}<i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
+                                </a>
+                            @endif
                             <a class="btn" href="{{ route('admin.dashboard') }}">
                                 {{ __('Dashboard  ') }}<i class="fa-solid fa-chart-line" id="carbtn-ico ms-3"></i>
                             </a>

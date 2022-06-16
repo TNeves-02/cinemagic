@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Cliente;
+use App\Models\Genero;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ClientePolicy
+class GeneroPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class ClientePolicy
      */
     public function viewAny(User $user)
     {
-        return ($user->tipo == 'A' || $user->tipo == 'F');
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Cliente $cliente)
+    public function view(User $user, Genero $genero)
     {
-        return ($user->id == $cliente->id);
+        //
     }
 
     /**
@@ -41,41 +41,29 @@ class ClientePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->tipo == 'A';
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Cliente $cliente)
+    public function update(User $user, Genero $genero)
     {
-        return ($user->tipo == 'A' || ($user->tipo == 'C' && $user->id == $cliente->id));
+        return $user->tipo == 'A';
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Cliente $cliente)
-    {
-        return $user->tipo == 'A';
-    }
-
-    /**
-     * Determine whether the user can block/unblock the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function blockUnblock(User $user, Cliente $cliente)
+    public function delete(User $user, Genero $genero)
     {
         return $user->tipo == 'A';
     }
@@ -84,10 +72,10 @@ class ClientePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Cliente $cliente)
+    public function restore(User $user, Genero $genero)
     {
         return $user->tipo == 'A';
     }
@@ -96,10 +84,10 @@ class ClientePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cliente  $cliente
+     * @param  \App\Models\Genero  $genero
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Cliente $cliente)
+    public function forceDelete(User $user, Genero $genero)
     {
         return $user->tipo == 'A';
     }

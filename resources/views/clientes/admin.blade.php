@@ -2,8 +2,15 @@
 
 @section('content')
 <div class="row mb-3">
-    <div class="col-3">
-        <a href="{{route('admin.clientes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo   !! NÃO SEI SE FAZ SENTIDO</a>
+    <div class="col-12">
+        <form method="GET" action="#" class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="nome" id="inputNome">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+                </div>
+            </div>
+        </form>
     </div>
     
 </div>
@@ -16,7 +23,9 @@
             <th>Email</th>
             <th>Tipo Pagamento</th>
             <th>Ref_pagamento</th>
-            <th colspan="3" style="text-align:center;">Ações</th>
+            @if(Auth::user()->tipo=="A")
+                <th colspan="3" style="text-align:center;">Ações</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -30,23 +39,34 @@
             <td>{{$cliente->user->email}}</td>
             <td>{{$cliente->tipo_pagamento}}</td>
             <td>{{$cliente->ref_pagamento}}</td>
-            <td>
-                <a href="#"
-                    class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i></a>
-             </td>
-             <td>
-                <a href="#""
-                    class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i></a>
-             </td>
+            @can('blockUnblock', $cliente)   
                 <td>
-                <form action="#" method="POST">
-                    @csrf
-                    @method("DELETE")        
-                    <button type="submit" class="btn btn-danger btn-sm">
-                    <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </form>
+                    <form action="#" method="POST">
+                        @csrf
+                        @method("UPDATE")     
+                            @if($cliente->bloqueado == 1)
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-ban"></i>
+                                </button>
+                            @else
+                                <button type="submit" class="btn btn-success btn-sm">
+                                    <i class="fa-solid fa-ban"></i>
+                                </button>
+                            @endif
+                    </form>
                 </td>
+            @endcan
+            @can('delete', $cliente)   
+                <td>
+                    <form action="#" method="POST">
+                        @csrf
+                        @method("DELETE")     
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                    </form>
+                </td>
+            @endcan
             </tr>
             @endforeach
         </tbody>

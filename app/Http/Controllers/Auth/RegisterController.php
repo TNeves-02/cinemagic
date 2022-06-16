@@ -38,6 +38,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        if ($this->auth->check()) {
+            return redirect('/');
+        }
         $this->middleware('guest');
     }
 
