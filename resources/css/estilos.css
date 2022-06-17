@@ -6,7 +6,7 @@ body {
 }
 
 nav {
-  background-color: #272829;
+  background-color: transparent;
 
 }
 
@@ -52,6 +52,19 @@ hr {
 .navbar{
   padding-top: 0;
   padding-bottom: 0;
+}
+
+input[type="checkbox"] {
+  content: url('/img/lugar.png');
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  height: 30px;
+}
+
+input[type="checkbox"]:checked {
+  content: url('/img/Escolhido.png');
 }
 
 /*********************************/

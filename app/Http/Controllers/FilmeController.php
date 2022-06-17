@@ -45,17 +45,11 @@ class FilmeController extends Controller
     public function filmespag()
     {
         $qry = Filme::query();
-        /*
-        if ($curso) {
-            $qry->where('curso', $curso);
-        }
-        */
         $filmes = $qry->paginate(20);
         $generos = Genero::all();
         
         $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
   
-      
         return view('filmes.index')->withFilmes($filmes)
                                    ->withGeneros($generos)
                                    ->withAnos($ano);
@@ -118,11 +112,6 @@ class FilmeController extends Controller
     public function bilhete()
     {
         $qry = Filme::query();
-        /*
-        if ($curso) {
-            $qry->where('curso', $curso);
-        }
-        */
         $filmes = $qry->paginate(20);
         $generos = Genero::all();
         $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get(); 
@@ -182,7 +171,8 @@ class FilmeController extends Controller
     {
         $newFilme = Filme::create($request->validated());
         if ($request->hasFile('cartaz_url')) {
-            $path = $request->foto->store('public/cartazes');
+            $path = $request->cartaz_url->store('public/cartazes');
+            $newFilme->cartaz_url = basename($path);
         }
         $newFilme->save();
 

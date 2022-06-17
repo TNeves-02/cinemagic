@@ -35,7 +35,7 @@ class Bilhete extends Model
 
     public function sessao()
     {
-        return $this->hasOne(Sessao::class,"sessao_id","id");
+        return $this->hasOne(Sessao::class,"id","sessao_id");
     }
 
 }
