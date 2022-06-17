@@ -29,7 +29,7 @@ class FilmePost extends FormRequest
             'ano' =>                'required|integer|between:1900,2050',
             'sumario' =>            'required',
             'trailer_url' =>         'nullable',
-            'cartaz_url' =>         'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:8192',   // Máximum size = 8Mb
+            'cartaz_url' =>          'nullable|image|max:8192', 
         ];
     }
 }
