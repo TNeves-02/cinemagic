@@ -74,9 +74,11 @@
                                 @enderror
                             </div>
                             @endif
-                            <button class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" type="submit"><i class="fa-solid fa-pen"></i> {{ __('Confirmar') }}</button>
-                            <a href="{{ route('clientes.perfil') }}" class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" role="button" aria-pressed="true"><i class="fa-solid fa-arrow-left"></i> {{ __('Voltar') }}</a>
-                            </form>                                                     
+                            <button class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" type="submit"><i class="fa-solid fa-pen"></i> {{ __('Confirmar') }}</button>                        
+                            <a class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
+                                {{ __('Voltar') }}
+                            </a>    
+                        </form>                                                     
                         </div>
 
                     </div>

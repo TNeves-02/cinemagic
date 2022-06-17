@@ -36,6 +36,7 @@ Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes
 Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->name('lugares.index');
 
 Route::get('/historico', [ReciboController::class, 'index'])->name('recibos.index');
+Route::get('/historico/{recibo}', [ReciboController::class, 'historico'])->name('historico.recibo');
 
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
 

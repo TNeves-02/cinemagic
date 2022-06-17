@@ -9,33 +9,32 @@
                 <div class="card bg-white text-dark" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-2 mt-md-2 pb-2 w-100">
-                            <h2 class="fw-bold mb-4 text-uppercase">{{ __('Histórico') }}</h2>
+                            <h2 class="fw-bold mb-4 text-uppercase">{{ __('Histórico - Recibo ') }}{{$recibo->id}}</h2>
                             <hr>
-                            <table class="table" style="text-align:center; margin: auto; width: 80%">
+                            <table class="table" style="text-align:center">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('Nº Recibo') }}</th>
-                                        <th>{{ __('Data') }}</th>                                    
-                                        <th>{{ __('Preço') }}</th>
-                                        <th>{{ __('Ações') }}</th>
+                                        <th>{{ __('Nº Bilhete') }}</th>
+                                        <th>{{ __('Nome do Filme') }}</th>
+                                        <th>{{ __('Lugar') }}</th>
+                                        <th>{{ __('Estado') }}</th>
+                                        <th>{{ __('Preco Sem Iva') }}</th>
                                     </tr>
                                 </thead>
-                                <tbody style="text-align: center;">
-                                    @foreach ($recibos as $recibo)
+                                <tbody>    
+                                    @foreach ($bilhetes as $bilhete)
                                     <tr>
-                                        <td>{{$recibo->id}}</td>
-                                        <td>{{$recibo->data}}</td>
-                                        <td>{{$recibo->preco_total_com_iva}}</td>                                    
-                                        <td>
-                                            <a href="{{route('historico.recibo', ['recibo' => $recibo])}}" class="btn btn-dark" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i> Mais Informação</a>
-                                        </td>
+                                        <td>{{$bilhete->id}}</td>
+                                        <td>{{$bilhete->sessao->filme->titulo}}</td>
+                                        <td>{{$bilhete->lugar->fila}}{{$bilhete->lugar->posicao}}</td>
+                                        <td>{{$bilhete->estado}}</td>
+                                        <td>{{$bilhete->preco_sem_iva}}</td>
                                     </tr>
                                     @endforeach
+
+                                
                                 </tbody>
-                            </table>
-                            <div class="paginacao d-flex justify-content-center">
-                                {{ $recibos->withQueryString()->links() }}
-                            </div>
+                            </table>                            
                             <hr>
                             <a class="btn btn-outline-dark btn-lg px-5 mt-3 me-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
                                 {{ __('Página inicial') }}

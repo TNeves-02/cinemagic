@@ -63,6 +63,9 @@
                             <a class="btn btn-outline-dark btn-lg mt-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
                                 {{ __('Página inicial') }}
                             </a>
+                            <a class="btn btn-outline-dark btn-lg mt-2" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
+                                {{ __('Voltar') }}
+                            </a>
                         </div>
                     </div>
                 </div>

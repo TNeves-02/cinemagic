@@ -40,10 +40,13 @@
                             <a class="btn btn-outline-dark btn-lg mt-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
                                 {{ __('Página inicial') }}
                             </a>
+                            <a class="btn btn-outline-dark btn-lg mt-2" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
+                                {{ __('Voltar') }}
+                            </a>
 
                             @if ($pagamento!= '')
-                            <button type="submit">
-                            <a class="btn btn-outline-dark btn-lg mt-2">
+                            <button class="btn btn-outline-dark btn-lg mt-2" type="submit">
+                            <a>
                                 {{ __('Confirmar ') }}<i class="fa-solid fa-arrow-right"></i>
                             </a>
                             </button>
