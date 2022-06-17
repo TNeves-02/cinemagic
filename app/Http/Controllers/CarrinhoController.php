@@ -8,6 +8,8 @@ use App\Models\Sala;
 use App\Models\Configuracao;
 use App\Services\Payment;
 use App\Models\Recibo;
+use App\Models\Bilhete;
+use App\Models\Lugar;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,7 @@ class CarrinhoController extends Controller
 
     public function store_compra(Request $request, Filme $filme,Sessao $sessao)
     {
-        
+       
         $sala = Sala::where('id',$sessao->sala_id)->first();
         $carrinho = $request->session()->get('carrinho', []);
         $carrinho[$sessao->id] = [
@@ -29,12 +31,12 @@ class CarrinhoController extends Controller
             'titulo_filme' => $filme->titulo,
             'horario_sessao' => $sessao->horario_inicio,
             'sala' => $sala->nome,
+            'sala_id' => $sala->id,
             'lugares' => $request->lugar,
         ];
+       
         $request->session()->put('carrinho', $carrinho);
-        return back()
-            ->with('alert-msg', 'Foi adicionada uma sessao "' . $sessao->id . '" ao carrinho!')
-            ->with('alert-type', 'success');
+        return redirect()->route('carrinho.index');
     }
 
     public function destroy_carrinho_linha(Request $request,Sessao $sessao)
@@ -62,17 +64,12 @@ class CarrinhoController extends Controller
 
     public function store_carrinho(Request $request)
     {
-
-
         $carrinho = $request->session()->get('carrinho');
-
         $preco_bilhete = Configuracao::first();
-
         $nlugares = 0;
         foreach ($carrinho as $row ) {
             $nlugares = $nlugares + count($row['lugares']);
         }
-        
         $totalPagarSemIva = number_format($nlugares * $preco_bilhete->preco_bilhete_sem_iva,2);
         $totalPagarComIva = number_format( $nlugares * ($preco_bilhete->preco_bilhete_sem_iva+($preco_bilhete->preco_bilhete_sem_iva*($preco_bilhete->percentagem_iva/100))),2);
 
@@ -114,8 +111,11 @@ class CarrinhoController extends Controller
     public function recibo(Request $request)
     {
         $carrinho = $request->session()->get('carrinho');
+
         $preco_bilhete = Configuracao::first();
+
         $nlugares = 0;
+        
         foreach ($carrinho as $row ) {
             $nlugares = $nlugares + count($row['lugares']);
         }
@@ -130,17 +130,40 @@ class CarrinhoController extends Controller
         if ($pagamento == "VISA") {
             $nCartao = $request->NCartao ?? '';
             $codCVC = $request->codCVC ?? '';
-            $validacao = Payment::payWithVisa($nCartao,$codCVC);
-            if($validacao){
-                //cria um recibo e cria os bilhetes e volta para a pagina inicial 
-                //limpar o carrinho
-                $recibo = array(Auth::user()->cliente->id,date('Y-m-d', time()),$totalPagarSemIva,$iva, $totalPagarComIva,Auth::user()->cliente->nif,Auth::user()->name,$pagamento,$nCartao);
-             
-                $newRecibo = Recibo::create($recibo);
-                //atualizar tabela cliente
-                //criar bilhetes
-                $request->session()->forget('carrinho');
+            if(Payment::payWithVisa($nCartao,$codCVC)){
+                
 
+                $newRecibo = Recibo::create([
+                    'cliente_id' => Auth::user()->cliente->id,
+                    'data' => date('Y-m-d', time()) , 
+                    'preco_total_sem_iva' => $totalPagarSemIva, 
+                    'iva'=> $iva , 
+                    'preco_total_com_iva' =>  $totalPagarComIva,
+                    'nif' => Auth::user()->cliente->nif ,
+                    'nome_cliente' => Auth::user()->name,
+                    'tipo_pagamento' => $pagamento,
+                    'ref_pagamento' => $nCartao,
+                    'recibo_pdf_url' => null,
+                ]);
+               
+                foreach ($carrinho as $row ) {
+                 foreach ($row['lugares'] as $lugar) {
+                    $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
+                                   ->get();
+                    $newBilhete = Bilhete::create([
+                        'recibo_id'=> $newRecibo->id,
+                        'cliente_id' => Auth::user()->cliente->id,
+                        'sessao_id' => $row['id'],
+                        'lugar_id' => $idLugar[0]->id,
+                        'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
+                        'estado' => "não usado",
+                    ]);
+                 }
+                }
+                
+               $request->session()->forget('carrinho');
+
+               return redirect()->route('welcome.index');
             }
             else{
                 return back()->withErrors(['msg' => 'Escreva números válidos!']);
@@ -149,9 +172,39 @@ class CarrinhoController extends Controller
 
        elseif($pagamento == "PAYPAL") {   
             $email = $request->email ?? '';
-            $validacao = Payment::payWithPaypal($email);
-            if($validacao){
-                //ria um recibo e cria os bilhetes e volta para a pagina inicial 
+            if( Payment::payWithPaypal($email)){
+               
+                
+                $newRecibo = Recibo::create([
+                    'cliente_id' => Auth::user()->cliente->id,
+                    'data' => date('Y-m-d', time()) , 
+                    'preco_total_sem_iva' => $totalPagarSemIva, 
+                    'iva'=> $iva , 
+                    'preco_total_com_iva' =>  $totalPagarComIva,
+                    'nif' => Auth::user()->cliente->nif ,
+                    'nome_cliente' => Auth::user()->name,
+                    'tipo_pagamento' => $pagamento,
+                    'ref_pagamento' => $email,
+                    'recibo_pdf_url' => null,
+                ]);
+               
+                foreach ($carrinho as $row ) {
+                 foreach ($row['lugares'] as $lugar) {
+                    $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
+                                   ->get();
+                    $newBilhete = Bilhete::create([
+                        'recibo_id'=> $newRecibo->id,
+                        'cliente_id' => Auth::user()->cliente->id,
+                        'sessao_id' => $row['id'],
+                        'lugar_id' => $idLugar[0]->id,
+                        'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
+                        'estado' => "não usado",
+                    ]);
+                 }
+                }
+                $request->session()->forget('carrinho');
+
+                return redirect()->route('welcome.index');
             }
             else{
                 return back()->withErrors(['msg' => 'Escreva um Email válido!']);
@@ -160,9 +213,37 @@ class CarrinhoController extends Controller
 
         elseif($pagamento == "MBWAY") {
             $nTelefone = $request->nTelefone ?? '';
-            $validacao = Payment::payWithMBway($nTelefone);
-            if($validacao){
-                //ria um recibo e cria os bilhetes e volta para a pagina inicial 
+            if(Payment::payWithMBway($nTelefone)){
+                $newRecibo = Recibo::create([
+                    'cliente_id' => Auth::user()->cliente->id,
+                    'data' => date('Y-m-d', time()) , 
+                    'preco_total_sem_iva' => $totalPagarSemIva, 
+                    'iva'=> $iva , 
+                    'preco_total_com_iva' =>  $totalPagarComIva,
+                    'nif' => Auth::user()->cliente->nif ,
+                    'nome_cliente' => Auth::user()->name,
+                    'tipo_pagamento' => $pagamento,
+                    'ref_pagamento' => $nTelefone,
+                    'recibo_pdf_url' => null,
+                ]);
+               
+                foreach ($carrinho as $row ) {
+                 foreach ($row['lugares'] as $lugar) {
+                    $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
+                                   ->get();
+                    $newBilhete = Bilhete::create([
+                        'recibo_id'=> $newRecibo->id,
+                        'cliente_id' => Auth::user()->cliente->id,
+                        'sessao_id' => $row['id'],
+                        'lugar_id' => $idLugar[0]->id,
+                        'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
+                        'estado' => "não usado",
+                    ]);
+                 }
+                }
+                $request->session()->forget('carrinho');
+
+                return redirect()->route('welcome.index');
             }
             else{
                 return back()->withErrors(['msg' => 'Escreva um número de telefone válido!']);

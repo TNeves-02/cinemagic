@@ -18,7 +18,7 @@ class Recibo extends Model
         'nome_cliente',
         'tipo_pagamento',
         'ref_pagamento',
-        'recibo_pdf_url'
+        'recibo_pdf_url',
     ];
 
     public function cliente()

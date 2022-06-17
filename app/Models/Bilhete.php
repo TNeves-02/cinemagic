@@ -15,8 +15,7 @@ class Bilhete extends Model
         'lugar_id',
         'preco_sem_iva',
         'estado',
-        'bilhete_pdf_url', // analisar mais tarde
-        'bilhete_qrcode_url'
+      
     ];
 
     public function cliente()
