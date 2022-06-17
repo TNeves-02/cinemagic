@@ -10,8 +10,11 @@ use App\Services\Payment;
 use App\Models\Recibo;
 use App\Models\Bilhete;
 use App\Models\Lugar;
+use App\Notifications\FaturaPaga;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class CarrinhoController extends Controller
 {
@@ -145,7 +148,9 @@ class CarrinhoController extends Controller
                     'ref_pagamento' => $nCartao,
                     'recibo_pdf_url' => null,
                 ]);
-                $newRecibo->save();
+
+
+               $newRecibo->save();
                 foreach ($carrinho as $row ) {
                  foreach ($row['lugares'] as $lugar) {
                     $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
@@ -163,7 +168,7 @@ class CarrinhoController extends Controller
                 }
                 
                $request->session()->forget('carrinho');
-
+               Auth::user()->notify(new FaturaPaga($newRecibo));
                return redirect()->route('welcome.index');
             }
             else{
@@ -174,8 +179,7 @@ class CarrinhoController extends Controller
        elseif($pagamento == "PAYPAL") {   
             $email = $request->email ?? '';
             if( Payment::payWithPaypal($email)){
-               
-                
+                               
                 $newRecibo = Recibo::create([
                     'cliente_id' => Auth::user()->cliente->id,
                     'data' => date('Y-m-d', time()) , 
@@ -206,7 +210,7 @@ class CarrinhoController extends Controller
                  }
                 }
                 $request->session()->forget('carrinho');
-
+                Auth::user()->notify(new FaturaPaga($newRecibo));
                 return redirect()->route('welcome.index');
             }
             else{
@@ -228,10 +232,9 @@ class CarrinhoController extends Controller
                     'tipo_pagamento' => $pagamento,
                     'ref_pagamento' => $nTelefone,
                     'recibo_pdf_url' => null,
-                    
                 ]);
-                $newRecibo->save();
                
+                $newRecibo->save();
                 foreach ($carrinho as $row ) {
                  foreach ($row['lugares'] as $lugar) {
                     $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
@@ -248,6 +251,8 @@ class CarrinhoController extends Controller
                  }
                 }
                 $request->session()->forget('carrinho');
+
+                Auth::user()->notify(new FaturaPaga($newRecibo));
 
                 return redirect()->route('welcome.index');
             }

@@ -83,7 +83,10 @@
                             <a class="btn btn-outline-dark btn-lg px-5 mt-4 me-2" href="{{ route('password.request') }}"><i class="fa-solid fa-key"></i>
                                 {{ __('Editar Password') }}
                             </a> 
-                        </form>                                                     
+                        </form>
+                        <a class="btn btn-link-dark mt-3" href="{{ route('welcome.index') }}">
+                                    {{ __('Voltar à página inicial') }}
+                                </a>                                                     
                         </div>
 
                     </div>

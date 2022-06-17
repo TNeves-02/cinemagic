@@ -7,7 +7,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-white text-dark" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
-                        <div class="mb-md-5 mt-md-2 pb-2">
+                        <div class="md-5 mt-md-2 pb-2">
                             <h2 class="fw-bold mb-4 text-uppercase">{{ __('Reset Password') }}</h2>
                             <hr>
                             @if (session('status'))
@@ -30,12 +30,16 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <hr>
+                                
                                 <button class="btn btn-outline-dark btn-lg px-5 mt-2" type="submit"><i class="fa-solid fa-inbox"></i> {{ __('Send Password Reset Link') }}</button>
                                                             
-                                <a class="btn btn-outline-dark btn-lg px-5 mt-2" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
+                                <a class="btn btn-outline-dark btn-lg px-5 mt-3" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
                                 {{ __('Voltar') }}
-                            </a>  
+                            </a> 
+                            <hr> 
+                            <a class="btn btn-link-dark mt-2" href="{{ route('welcome.index') }}">
+                                    {{ __('Voltar à página inicial') }}
+                                </a>
                             </form>
                         </div>
                     </div>
