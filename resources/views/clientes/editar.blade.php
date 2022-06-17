@@ -76,9 +76,13 @@
                             @endif
                             <hr>
                             <button class="btn btn-outline-dark btn-lg px-5 mt-2 me-2" type="submit"><i class="fa-solid fa-pen"></i> {{ __('Confirmar') }}</button>                        
+                           
                             <a class="btn btn-outline-dark btn-lg px-5 mt-2 me-2" href="{{ url()->previous() }}"><i class="fa-solid fa-rotate-left"></i>
                                 {{ __('Voltar') }}
-                            </a>    
+                            </a>                             
+                            <a class="btn btn-outline-dark btn-lg px-5 mt-4 me-2" href="{{ route('password.request') }}"><i class="fa-solid fa-key"></i>
+                                {{ __('Editar Password') }}
+                            </a> 
                         </form>                                                     
                         </div>
 

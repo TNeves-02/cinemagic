@@ -20,9 +20,9 @@ class FilmeController extends Controller
         $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();
         $maisVistos = Filme::select('filmes.*')
                         ->join('sessoes','filmes.id','=','sessoes.filme_id')
-                        ->groupBy('filmes.id')
-                        ->orderByRaw("COUNT('sessoes.id') desc")
-                        ->take(3)
+                       // ->groupBy('filmes.id')
+                      //  ->orderByRaw("COUNT('sessoes.id') desc")
+                      //  ->take(3)
                         ->get();     
 
         $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
