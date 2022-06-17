@@ -41,8 +41,8 @@
                             @endif
                             
                             <hr>
-                            <a href="{{ route('clientes.editar') }}"class="btn btn-outline-dark btn-lg mt-2" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i> {{ __('Editar') }}</a>
-                            <a class="btn btn-outline-dark btn-lg mt-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
+                            <a href="{{ route('clientes.editar') }}"class="btn btn-outline-dark btn-lg px-5 mt-2 me-2" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i> {{ __('Editar') }}</a>
+                            <a class="btn btn-outline-dark btn-lg px-5 mt-2 me-2" href="{{ route('welcome.index') }}"><i class="fa-solid fa-arrow-left"></i>
                                 {{ __('Página inicial') }}
                             </a>
 

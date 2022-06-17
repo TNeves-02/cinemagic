@@ -2,8 +2,8 @@
 
 @section('content')
 
-<br><br><br><br>
-<h2 class="ult-lancamentos">Últimos Lançamentos</h2>
+<br><br>
+<h2 class="ult-lancamentos mt-5">Últimos Lançamentos</h2>
 <div class="carousel">
   <div class="container">
     <input type="radio" name="slider" id="item-1" checked>
