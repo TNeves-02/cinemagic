@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Filme;
 use App\Models\Sessao;
 use App\Models\Sala;
+use App\Models\Configuracao;
+use App\Services\Payment;
+use App\Models\Recibo;
+use Auth;
 use Illuminate\Http\Request;
 
 class CarrinhoController extends Controller
@@ -23,7 +27,6 @@ class CarrinhoController extends Controller
         $carrinho[$sessao->id] = [
             'id' => $sessao->id,
             'titulo_filme' => $filme->titulo,
-            'sessao_id' => $sessao->id,
             'horario_sessao' => $sessao->horario_inicio,
             'sala' => $sala->nome,
             'lugares' => $request->lugar,
@@ -59,9 +62,115 @@ class CarrinhoController extends Controller
 
     public function store_carrinho(Request $request)
     {
-        dd(
-            'Place code to store the shopping cart / transform the cart into a sale',
-            $request->session()->get('carrinho')
-        );
+
+
+        $carrinho = $request->session()->get('carrinho');
+
+        $preco_bilhete = Configuracao::first();
+
+        $nlugares = 0;
+        foreach ($carrinho as $row ) {
+            $nlugares = $nlugares + count($row['lugares']);
+        }
+        
+        $totalPagarSemIva = number_format($nlugares * $preco_bilhete->preco_bilhete_sem_iva,2);
+        $totalPagarComIva = number_format( $nlugares * ($preco_bilhete->preco_bilhete_sem_iva+($preco_bilhete->preco_bilhete_sem_iva*($preco_bilhete->percentagem_iva/100))),2);
+
+        $iva =number_format( ($preco_bilhete->percentagem_iva/100) *$totalPagarSemIva , 2) ;
+        
+       
+        return view('carrinho.pagamento')
+                 -> withIva($iva)
+                 -> withtotalPagarSemIva($totalPagarSemIva)
+                 -> withtotalPagarComIva($totalPagarComIva)
+                 -> withCarrinho($carrinho);
     }
+
+    public function finalizar(Request $request)
+    {
+        $pagamento = $request->pagamento ?? '';
+
+        $carrinho = $request->session()->get('carrinho');
+
+        $preco_bilhete = Configuracao::first();
+
+        $nlugares = 0;
+        foreach ($carrinho as $row ) {
+            $nlugares = $nlugares + count($row['lugares']);
+        }
+        
+        $totalPagarSemIva = number_format($nlugares * $preco_bilhete->preco_bilhete_sem_iva,2);
+        $totalPagarComIva = number_format( $nlugares * ($preco_bilhete->preco_bilhete_sem_iva+($preco_bilhete->preco_bilhete_sem_iva*($preco_bilhete->percentagem_iva/100))),2);
+
+        $iva =number_format( ($preco_bilhete->percentagem_iva/100) *$totalPagarSemIva , 2) ;
+        
+        return view('pagamento.finalizar')
+                 -> withIva($iva)
+                 -> withtotalPagarSemIva($totalPagarSemIva)
+                 -> withtotalPagarComIva($totalPagarComIva)
+                 -> withPagamento($pagamento);
+    }
+
+    public function recibo(Request $request)
+    {
+        $carrinho = $request->session()->get('carrinho');
+        $preco_bilhete = Configuracao::first();
+        $nlugares = 0;
+        foreach ($carrinho as $row ) {
+            $nlugares = $nlugares + count($row['lugares']);
+        }
+        
+        $totalPagarSemIva = number_format($nlugares * $preco_bilhete->preco_bilhete_sem_iva,2);
+        $totalPagarComIva = number_format( $nlugares * ($preco_bilhete->preco_bilhete_sem_iva+($preco_bilhete->preco_bilhete_sem_iva*($preco_bilhete->percentagem_iva/100))),2);
+
+        $iva =number_format( ($preco_bilhete->percentagem_iva/100) *$totalPagarSemIva , 2) ;
+        
+        $pagamento = $request->pagamento ?? '';
+
+        if ($pagamento == "VISA") {
+            $nCartao = $request->NCartao ?? '';
+            $codCVC = $request->codCVC ?? '';
+            $validacao = Payment::payWithVisa($nCartao,$codCVC);
+            if($validacao){
+                //cria um recibo e cria os bilhetes e volta para a pagina inicial 
+                //limpar o carrinho
+                $recibo = array(Auth::user()->cliente->id,date('Y-m-d', time()),$totalPagarSemIva,$iva, $totalPagarComIva,Auth::user()->cliente->nif,Auth::user()->name,$pagamento,$nCartao);
+             
+                $newRecibo = Recibo::create($recibo);
+                //atualizar tabela cliente
+                //criar bilhetes
+                $request->session()->forget('carrinho');
+
+            }
+            else{
+                return back()->withErrors(['msg' => 'Escreva números válidos!']);
+            }
+        }
+
+       elseif($pagamento == "PAYPAL") {   
+            $email = $request->email ?? '';
+            $validacao = Payment::payWithPaypal($email);
+            if($validacao){
+                //ria um recibo e cria os bilhetes e volta para a pagina inicial 
+            }
+            else{
+                return back()->withErrors(['msg' => 'Escreva um Email válido!']);
+            }
+        }
+
+        elseif($pagamento == "MBWAY") {
+            $nTelefone = $request->nTelefone ?? '';
+            $validacao = Payment::payWithMBway($nTelefone);
+            if($validacao){
+                //ria um recibo e cria os bilhetes e volta para a pagina inicial 
+            }
+            else{
+                return back()->withErrors(['msg' => 'Escreva um número de telefone válido!']);
+            }
+        }
+       
+    }
+
+
+
 }

@@ -10,6 +10,7 @@ class Configuracao extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'configuracao';
     protected $fillable = [
         'preco_bilhete_sem_iva', 'percentagem_iva'
     ];
