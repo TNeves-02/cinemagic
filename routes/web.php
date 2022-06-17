@@ -56,6 +56,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('carrinho', [CarrinhoController::class, 'store_carrinho'])->name('carrinho.store.carrinho');
 
+    Route::get('/pagamento', [CarrinhoController::class, 'finalizar'])->name('pagamento.finalizar');
+
+    Route::get('/pagamento/finalizar', [CarrinhoController::class, 'recibo'])->name('pagamento.recibo');
+
 });
 
 //Parte de administração

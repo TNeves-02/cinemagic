@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $row['titulo_filme'] }} </td>
                                         <td>{{ $row['sala'] }} </td>
-                                        <td>{{ $row['sessao_id'] }} </td>
+                                        <td>{{ $row['id'] }} </td>
                                         <td>{{ $row['horario_sessao'] }} </td>
                                         <td>
                                             @foreach ($row['lugares'] as $lugar)
