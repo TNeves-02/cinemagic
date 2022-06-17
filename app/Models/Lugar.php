@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lugar extends Model
 {
     use HasFactory,SoftDeletes;
-    public $timestamps = false;
     protected $table = 'lugares';
+    public $timestamps = false;
     protected $fillable = [
         'sala_id', 
         'fila', 

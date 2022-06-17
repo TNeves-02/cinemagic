@@ -9,7 +9,9 @@
 
     <div class="movie-card">
         <div class="movie-header">
-            <img class="img-fluid" style="min-width:300px;"  src="{{asset('storage/cartazes/'.$filme->cartaz_url) }}">
+            <img class="img-fluid" style="min-width:300px;" src="{{$filme->cartaz_url ? asset('storage/cartazes/'  . $filme->cartaz_url) : asset('img/no-available.jpg') }}">
+
+            
         </div>
         <!--movie-header-->
         <div class="movie-content">

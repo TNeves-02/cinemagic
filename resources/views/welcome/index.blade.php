@@ -12,17 +12,19 @@
     <div class="cards">
       <label class="card-carousel" for="item-1" id="movie-1">
         <a href="{{route('filmes.filme', $ultLancamentos[0])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[0]->cartaz_url}}" alt="movie">
+          <img id="img-carousel"src="{{$ultLancamentos[0]->cartaz_url ? asset('storage/cartazes/'  . $ultLancamentos[0]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
+
+       
         </a>
       </label>
       <label class="card-carousel" for="item-2" id="movie-2">
         <a href="{{route('filmes.filme', $ultLancamentos[1])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[1]->cartaz_url}}" alt="movie">
+          <img id="img-carousel" src="{{$ultLancamentos[1]->cartaz_url ? asset('storage/cartazes/'  . $ultLancamentos[1]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
         </a>
       </label>
       <label class="card-carousel" for="item-3" id="movie-3">
         <a href="{{route('filmes.filme', $ultLancamentos[2])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$ultLancamentos[2]->cartaz_url}}" alt="movie">
+          <img id="img-carousel"   src="{{$ultLancamentos[2]->cartaz_url ? asset('storage/cartazes/'  . $ultLancamentos[2]->cartaz_url) : asset('img/no-available.jpg') }}"  alt="movie">
         </a>
       </label>
     </div>
@@ -69,17 +71,20 @@
     <div class="cards">
       <label class="card-carousel" for="itemMaisVistos-1" id="movieMaisVistos-1">
         <a href="{{route('filmes.filme', $maisVistos[0])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[0]->cartaz_url}}" alt="movie">
+          <img id="img-carousel"  src="{{$maisVistos[0]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[0]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
+        
         </a>
       </label>
       <label class="card-carousel" for="itemMaisVistos-2" id="movieMaisVistos-2">
         <a href="{{route('filmes.filme', $maisVistos[1])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[1]->cartaz_url}}" alt="movie">
+          <img id="img-carousel"    src="{{$maisVistos[1]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[1]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
         </a>
       </label>
       <label class="card-carousel" for="itemMaisVistos-3" id="movieMaisVistos-3">
         <a href="{{route('filmes.filme', $maisVistos[2])}}">
-          <img id="img-carousel" src="storage/cartazes/{{$maisVistos[2]->cartaz_url}}" alt="movie">
+          <img id="img-carousel"    src="{{$maisVistos[2]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[2]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
+
+         
         </a>
       </label>
 

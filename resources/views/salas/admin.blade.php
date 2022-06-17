@@ -19,12 +19,6 @@
     @foreach ($salas as $sala)
         <tr>
             <td>{{$sala->nome}}</td>
-            @can('update', $sala)
-                <td>
-                    <a href="{{route('admin.salas.edit', ['sala' => $sala])}}"
-                        class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-pen"></i></a>
-                </td>
-            @endcan
             <td>
                 <a href="{{route('admin.salas.view', ['sala' => $sala])}}"
                     class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="fa-solid fa-eye"></i></a>

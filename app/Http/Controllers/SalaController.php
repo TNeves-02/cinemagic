@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sala;
+use App\Models\Lugar;
 use App\Http\Requests\SalaPost;
 use Illuminate\Http\Request;
 
@@ -17,16 +18,15 @@ class SalaController extends Controller
             ->withSalas($salas);
     }
 
-    public function edit(Sala $sala)
-    {
-        return view('salas.edit')
-            ->withSala($sala);
-    }
 
     public function view(Sala $sala)
     {
+        $numColunas = Lugar::select('fila')->where('sala_id',$sala->id)->groupBy('fila')->count();
+        $numfilas = Lugar::select('fila')->where('sala_id',$sala->id)->groupBy('posicao')->count();
         return view('salas.view')
-            ->withSala($sala);
+            ->withSala($sala)
+            ->withNumColunas($numColunas)
+            ->withNumFilas($numfilas);
     }
 
 
@@ -40,32 +40,46 @@ class SalaController extends Controller
 
     public function store(SalaPost $request)
     {
-        $newSala= Sala::create($request->validated());
+      
+        $newSala= Sala::create( $request->validated());
         $newSala->save();
+        
+
+        $filas = $request->filas ?? '';
+        $colunas = $request->colunas ?? '';
+
+        $limit = ord('A') + $filas;
+        for($letter = ord('A'); $letter < $limit; $letter++){ 
+            for ($j=1; $j < $colunas+1; $j++) { 
+                $newLugar= Lugar::create([
+                    'sala_id' => $newSala->id,
+                    'fila' => chr($letter),
+                    'posicao' => $j,
+                ]);
+                $newLugar->save();
+            }
+        }
+       
 
         return redirect()->route('admin.salas')
             ->with('alert-msg', 'Sala "' . $newSala->nome . '" foi criada com sucesso!')
             ->with('alert-type', 'success');
     }
 
-    public function update(SalaPost $request, Sala $sala)
-    {
-        $sala->fill($request->validated());
-        $sala->save();
-        return redirect()->route('admin.salas')
-            ->with('alert-msg', 'Sala "' . $sala->nome . '" foi alterada com sucesso!')
-            ->with('alert-type', 'success');
-    }
-
-
+ 
     public function destroy(Sala $sala)
     {
         $nomeAntigo = $sala->nome;
+        // $lugares=Lugar::where('sala_id',$sala->id)->delete();
+        // dd($lugares,$sala);
+        
         try {
+            Lugar::where('sala_id',$sala->id)->delete();
             $sala->delete();
             return redirect()->route('admin.salas')
                 ->with('alert-msg', 'Sala "' . $sala->nome . '" foi apagada com sucesso!')
                 ->with('alert-type', 'success');
+                
         } catch (\Throwable $th) {
             
             if ($th->errorInfo[1] == 1451) {  

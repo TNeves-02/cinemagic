@@ -8,7 +8,8 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="filme_details_pic">
-                        <img src="/storage/cartazes/{{$filme->cartaz_url}}" style="width:450px;height:650px" />
+                        <img  src="{{$filme->cartaz_url ? asset('storage/cartazes/' . $filme->cartaz_url) : asset('img/no-available.jpg') }}" style="width:450px;height:650px" />
+                       
                     </div>
                 </div>
                 <div class="col-lg-5">

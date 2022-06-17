@@ -145,7 +145,7 @@ class CarrinhoController extends Controller
                     'ref_pagamento' => $nCartao,
                     'recibo_pdf_url' => null,
                 ]);
-               
+                $newRecibo->save();
                 foreach ($carrinho as $row ) {
                  foreach ($row['lugares'] as $lugar) {
                     $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
@@ -158,6 +158,7 @@ class CarrinhoController extends Controller
                         'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
                         'estado' => "não usado",
                     ]);
+                    $newBilhete->save();
                  }
                 }
                 
@@ -188,6 +189,7 @@ class CarrinhoController extends Controller
                     'recibo_pdf_url' => null,
                 ]);
                
+                $newRecibo->save();
                 foreach ($carrinho as $row ) {
                  foreach ($row['lugares'] as $lugar) {
                     $idLugar = Lugar::where([['sala_id', $row['sala_id']],['fila',$lugar[0]],['posicao',$lugar[1]]])
@@ -200,6 +202,7 @@ class CarrinhoController extends Controller
                         'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
                         'estado' => "não usado",
                     ]);
+                    $newBilhete->save();
                  }
                 }
                 $request->session()->forget('carrinho');
@@ -225,7 +228,9 @@ class CarrinhoController extends Controller
                     'tipo_pagamento' => $pagamento,
                     'ref_pagamento' => $nTelefone,
                     'recibo_pdf_url' => null,
+                    
                 ]);
+                $newRecibo->save();
                
                 foreach ($carrinho as $row ) {
                  foreach ($row['lugares'] as $lugar) {
@@ -239,6 +244,7 @@ class CarrinhoController extends Controller
                         'preco_sem_iva' => $preco_bilhete->preco_bilhete_sem_iva ,
                         'estado' => "não usado",
                     ]);
+                    $newBilhete->save();
                  }
                 }
                 $request->session()->forget('carrinho');

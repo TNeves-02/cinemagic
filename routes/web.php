@@ -104,15 +104,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         //salas admin
         Route::get('salas', [SalaController::class, 'admin_index'])->name('salas');
 
-        Route::get('salas/{sala}/edit', [SalaController::class, 'edit'])->name('salas.edit');
-
         Route::get('salas/{sala}/view', [SalaController::class, 'view'])->name('salas.view');
 
         Route::get('salas/create', [SalaController::class, 'create'])->name('salas.create');
 
         Route::post('salas', [SalaController::class, 'store'])->name('salas.store');
-
-        Route::put('salas/{sala}', [SalaController::class, 'update'])->name('salas.update');
 
         Route::delete('salas/{sala}', [SalaController::class, 'destroy'])->name('salas.destroy');
 
@@ -131,22 +127,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::put('sessoes/{sessao}', [SessaoController::class, 'update'])->name('sessoes.update');
 
         Route::delete('sessoes/{sessao}', [SessaoController::class, 'destroy'])->name('sessoes.destroy');
-
-        
-        //lugares admin //falta terminar
-        Route::get('lugares', [LugarController::class, 'admin_index'])->name('lugares');
-
-        Route::get('lugares/{lugar}/edit', [LugarController::class, 'edit'])->name('lugares.edit');
-
-        Route::get('lugares/{lugar}/view', [LugarController::class, 'view'])->name('lugares.view');
-
-        Route::get('lugares/create', [LugarController::class, 'create'])->name('lugares.create');
-
-        Route::post('lugares', [LugarController::class, 'store'])->name('lugares.store');
-
-        Route::put('lugares/{lugar}', [LugarController::class, 'update'])->name('lugares.update');
-
-        Route::delete('lugares/{lugar}', [LugarController::class, 'destroy'])->name('lugares.destroy');
 
         
         //clientes admin

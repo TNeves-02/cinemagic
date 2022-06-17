@@ -46,6 +46,7 @@
                             </table>
                             <div>
                                 <p>
+                                    @if ($carrinho != null)
                                 <form action="{{route('carrinho.destroy')}}" method="POST">
                                     @csrf
                                     @method("DELETE")
@@ -57,6 +58,7 @@
                                     @csrf
                                     <input class="btn btn-dark btn-lg " type="submit" value="Confirmar carrinho">
                                 </form>
+                                @endif
                                 </p>
                             </div>
                             <hr class="mt-4 mb-4">
