@@ -25,15 +25,18 @@ class FilmeController extends Controller
                         ->take(3)
                         ->get();                                                   
 
-        $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
-                            ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
-                            ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
-                            ->where('sessoes.data', '>=', date('Y-m-d', time()))
-                            ->where('sessoes.horario_inicio', '>=', date('H:i:s', time()))
-                            ->orderBy('sessoes.data','asc')
-                            ->orderBy('sessoes.horario_inicio','asc')
-                            ->take(25)
-                            ->get();
+                        $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
+                        ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                        ->join('salas', 'salas.id', '=', 'sessoes.sala_id')
+                        ->where('sessoes.data', '=', date('Y-m-d', time()))
+                        ->where('sessoes.horario_inicio', '>=', date('H:i:s', time()))
+                        ->Orwhere('sessoes.data', '>', date('Y-m-d', time()))
+                        ->orderBy('sessoes.data','asc')
+                        ->orderBy('sessoes.horario_inicio','asc')
+                        ->take(25)
+                        ->get();
+
+                       
 
         return view('welcome.index')->withFilmes($filmes)
                                     ->withGeneros($generos)

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-3">
-        @can('create', App\Models\sessao::class)
+        @can('create', App\Models\Sessao::class)
             <a href="{{route('admin.sessoes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Nova Sessao</a>
         @endcan
     </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-3">
-        @can('create', App\Models\filme::class)
+        @can('create', App\Models\Filme::class)
             <a href="{{route('admin.filmes.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo Filme</a>
         @endcan
     </div>

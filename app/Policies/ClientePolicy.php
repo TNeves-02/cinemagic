@@ -53,7 +53,7 @@ class ClientePolicy
      */
     public function update(User $user, Cliente $cliente)
     {
-        return ($user->tipo == 'A' || ($user->tipo == 'C' && $user->id == $cliente->id));
+       //
     }
 
     /**
@@ -65,7 +65,10 @@ class ClientePolicy
      */
     public function delete(User $user, Cliente $cliente)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
     }
 
     /**

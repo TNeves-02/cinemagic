@@ -43,9 +43,9 @@
             @can('blockUnblock',$cliente)
             <td>
                 @if ($cliente->user->bloqueado == 1)
-                <span style="background-color:red; color:white; border-radius: 10%">Bloqueado</span>
+                <span class="badge badge-danger">Bloqueado</span>
                 @elseif($cliente->user->bloqueado == 0)
-                <span style="background-color:green; color:white; border-radius: 10%">Ativo</span>
+                <span class="badge badge-success"">Ativo</span>
                 @endif
             </td>   
                 <td>

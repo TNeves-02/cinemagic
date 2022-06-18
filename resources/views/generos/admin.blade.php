@@ -3,7 +3,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-3">
-        @can('create', App\Models\genero::class)
+        @can('create', App\Models\Genero::class)
             <a href="{{route('admin.generos.create')}}" class="btn btn-success" role="button" aria-pressed="true"><i class="fa-solid fa-plus"></i> Novo Genero</a>
         @endcan
     </div>

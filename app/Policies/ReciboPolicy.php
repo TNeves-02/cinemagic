@@ -40,8 +40,11 @@ class ReciboPolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user)
-    {
-        return ($user->tipo == 'A' || $user->tipo == 'C');
+    {        
+        if($user->tipo == 'A' || $user->tipo == 'C')
+        {
+            return true;
+        }  
     }
 
     /**
@@ -53,7 +56,7 @@ class ReciboPolicy
      */
     public function update(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D';
+        return false;
     }
 
     /**
@@ -65,7 +68,7 @@ class ReciboPolicy
      */
     public function delete(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D';
+        return false;
     }
 
     /**
@@ -77,7 +80,7 @@ class ReciboPolicy
      */
     public function restore(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D';
+        return false;
     }
 
     /**
@@ -89,6 +92,6 @@ class ReciboPolicy
      */
     public function forceDelete(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D';
+        return false;
     }
 }

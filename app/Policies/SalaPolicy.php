@@ -41,7 +41,10 @@ class SalaPolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        }       
     }
 
     /**
@@ -53,7 +56,10 @@ class SalaPolicy
      */
     public function update(User $user, Sala $sala)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
     }
 
     /**
@@ -65,7 +71,11 @@ class SalaPolicy
      */
     public function delete(User $user, Sala $sala)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
+        
     }
 
     /**
@@ -89,6 +99,9 @@ class SalaPolicy
      */
     public function forceDelete(User $user, Sala $sala)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
     }
 }

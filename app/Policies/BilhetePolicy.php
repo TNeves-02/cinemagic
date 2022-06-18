@@ -57,7 +57,7 @@ class BilhetePolicy
      */
     public function update(User $user, Bilhete $bilhete)
     {
-        return ($user->tipo == 'A' || $user->tipo == 'F');
+       //
     }
 
     /**
@@ -69,7 +69,7 @@ class BilhetePolicy
      */
     public function delete(User $user, Bilhete $bilhete)
     {
-        return $user->tipo == 'A';
+
     }
 
     /**

@@ -41,7 +41,10 @@ class FilmePolicy
      */
     public function create(User $user)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        }  
     }
 
     /**
@@ -53,7 +56,10 @@ class FilmePolicy
      */
     public function update(User $user, Filme $filme)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
     }
 
     /**
@@ -65,7 +71,10 @@ class FilmePolicy
      */
     public function delete(User $user, Filme $filme)
     {
-        return $user->tipo == 'A';
+        if($user->tipo == 'A')
+        {
+            return true;
+        } 
     }
 
     /**

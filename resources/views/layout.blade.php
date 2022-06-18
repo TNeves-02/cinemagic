@@ -36,9 +36,13 @@
             </ul>
         </div>
         <div class="collapse navbar-collapse justify-content-end mr-5 pr-5">
-            <a class="btn btn btn-outline-light" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> {{ __('Carrinho  ') }}</a>
-            <div class="dropdown">
-                @auth
+        @auth
+        @if(Auth::user()->tipo == 'C')
+        <a class="btn btn btn-outline-light" id="carbtn" href="{{route('carrinho.index')}}"><i class="bi bi-cart" id="carbtn-ico ms-3"></i> {{ __('Carrinho  ') }}</a>
+        @endif
+        
+        <div class="dropdown">
+               
                 <button class="dropbtn">
                     <div class="avatar-area ms-3">
                         <span class="name-user">{{Auth::user()->name}}</span>
@@ -46,7 +50,7 @@
                     </div>
                 </button>
                 <div class="dropdown-content">
-                    @if(Auth::user()->tipo!="F")
+                    @if(Auth::user()->tipo != '')
                         <a class="btn" href="{{ route('clientes.perfil') }}">
                             {{ __('Perfil  ') }} <i class="fa-solid fa-user" id="carbtn-ico ms-3"></i>
                         </a>
