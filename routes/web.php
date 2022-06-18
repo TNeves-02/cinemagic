@@ -13,7 +13,6 @@ use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\PdfController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,21 +37,22 @@ Route::get('/filme/{filme}', [FilmeController::class, 'filmepag'])->name('filmes
 Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->name('lugares.index');
 
 Route::get('/historico', [ReciboController::class, 'index'])->name('recibos.index');
+
 Route::get('/historico/{recibo}', [ReciboController::class, 'historico'])->name('historico.recibo');
 
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
 
 Route::get('/perfil/edit', [ClienteController::class, 'editarPerfil'])->name('clientes.editar');
 
-Route::post('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
+Route::put('/perfil/{user}', [ClienteController::class, 'update'])->name('clientes.update');
+
+Route::get('gerarpdf/{recibo}', [CarrinhoController::class, 'gerarPdf'])->name('pdf.index');
 
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 
 Route::delete('carrinho/{sessao}', [CarrinhoController::class, 'destroy_carrinho_linha'])->name('carrinho.destroy_linha');
 
 Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
-
-Route::get('gerarpdf/{recibo}', [CarrinhoController::class, 'gerarPdf'])->name('pdf.index');
 
 //confirmação de carrinho e compra de carrinho necessitam de login
 Route::middleware('auth')->group(function () {
@@ -136,16 +136,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         //clientes admin
         Route::get('clientes', [ClienteController::class, 'admin_index'])->name('clientes');
 
-        Route::get('clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
-
-        Route::get('clientes/{cliente}/view', [ClienteController::class, 'view'])->name('clientes.view');
-
-        Route::get('clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
-
-        Route::post('clientes', [ClienteController::class, 'store'])->name('clientes.store');
-
-        Route::put('clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+        Route::put('clientes/{cliente}', [ClienteController::class, 'block'])->name('clientes.block');
 
         Route::delete('clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+
+        //bilhetes admin
+
+        Route::get('bilhetes', [BilheteController::class, 'admin_index'])->name('bilhetes');
     });
 });

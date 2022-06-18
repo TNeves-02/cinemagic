@@ -27,7 +27,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.dashboard')}}">
                 <div class="sidebar-brand-icon">
                     <img src="/img/navbar/inicial.svg" alt="Logo" class="logo-img">
                 </div>
@@ -67,7 +67,7 @@
                     <span>{{ __('Generos  ') }}</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('admin.bilhetes')}}">
                     <i class="fas fa-fw fa-ticket"></i>
                     <span>{{ __('Bilhetes  ') }}</span></a>
             </li>

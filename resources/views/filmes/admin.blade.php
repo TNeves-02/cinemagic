@@ -51,7 +51,7 @@
             </td>
             @can('delete', $filme)  
                 <td>
-                    <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}"" method="POST">
+                    <form action="{{route('admin.filmes.destroy', ['filme' => $filme])}}" method="POST">
                         @csrf
                         @method("DELETE")        
                         <button type="submit" class="btn btn-danger btn-sm">

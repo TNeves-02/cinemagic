@@ -3,9 +3,9 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-12">
-        <form method="GET" action="#" class="form-group">
+        <form method="GET" action="{{route('admin.clientes')}}" class="form-group">
             <div class="input-group">
-                <input type="text" class="form-control" name="nome" id="inputNome">
+                <input type="text" class="form-control" name="nome" id="inputNome"  value="{{$nome}}" placeholder="Nome do Cliente">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
                 </div>
@@ -24,7 +24,8 @@
             <th>Tipo Pagamento</th>
             <th>Ref_pagamento</th>
             @if(Auth::user()->tipo=="A")
-                <th colspan="3" style="text-align:center;">Ações</th>
+                <th>Estado</th>
+                <th colspan="2" style="text-align:center;">Ações</th>
             @endif
         </tr>
     </thead>
@@ -39,17 +40,24 @@
             <td>{{$cliente->user->email}}</td>
             <td>{{$cliente->tipo_pagamento}}</td>
             <td>{{$cliente->ref_pagamento}}</td>
-            @can('blockUnblock', $cliente)   
+            @can('blockUnblock',$cliente)
+            <td>
+                @if ($cliente->user->bloqueado == 1)
+                <span style="background-color:red; color:white; border-radius: 10%">Bloqueado</span>
+                @elseif($cliente->user->bloqueado == 0)
+                <span style="background-color:green; color:white; border-radius: 10%">Ativo</span>
+                @endif
+            </td>   
                 <td>
-                    <form action="#" method="POST">
+                    <form action="{{route('admin.clientes.block', $cliente)}}" method="POST">
                         @csrf
-                        @method("UPDATE")     
-                            @if($cliente->bloqueado == 1)
-                                <button type="submit" class="btn btn-danger btn-sm">
+                        @method('PUT')     
+                            @if($cliente->user->bloqueado == 1)
+                                <button type="submit" class="btn btn-success btn-sm">
                                     <i class="fa-solid fa-ban"></i>
                                 </button>
                             @else
-                                <button type="submit" class="btn btn-success btn-sm">
+                                <button type="submit" class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-ban"></i>
                                 </button>
                             @endif
@@ -58,7 +66,7 @@
             @endcan
             @can('delete', $cliente)   
                 <td>
-                    <form action="#" method="POST">
+                    <form action="{{route('admin.clientes.destroy', $cliente)}}" method="POST">
                         @csrf
                         @method("DELETE")     
                             <button type="submit" class="btn btn-danger btn-sm">

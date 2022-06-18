@@ -4,6 +4,40 @@
 
 
 <div class="container-movie"  id="movie-style">
+    
+    <form method="GET"  class="form-group">
+        <div class="input-group">
+           
+            <select class="custom-select" name="genero" id="inputGernero" aria-label="Genero">
+                <option value="" {{'' == old('genero', $selectedGenero ) ? 'selected' : ''}}>Todos Generos</option>
+                @foreach ($generos as $genero)
+                <option value={{$genero->code}} {{$genero->code == old('genero', $selectedGenero) ? 'selected' : ''}}>{{$genero -> nome}}</option>
+                @endforeach
+            </select>
+         
+
+            <input type="text" class="form-control" name="titulo" id="inputTitulo" placeholder="Titulo do Filme">
+            
+            <select class="custom-select" name="ano" id="inputGernero" aria-label="Ano">
+                <option value="" {{'' == old('ano', $selectedAno ) ? 'selected' : ''}} >Ano</option>
+                @foreach ($anos as $ano)
+                <option value={{$ano->ano}} {{$ano->ano == old('ano', $selectedAno) ? 'selected' : ''}} >{{$ano->ano}}</option>
+                @endforeach
+            </select>
+
+            <select class="custom-select" name="sessoes" id="inputGernero" aria-label="sessao">
+              <option value="" {{'' == old('sessoes', $selectedSessao ) ? 'selected' : ''}} >Sessões</option>
+              <option value="1" {{1 == old('sessoes', $selectedSessao) ? 'selected' : ''}}>Sim</option>
+              <option  value="0" {{0 == old('sessoes', $selectedSessao) ? 'selected' : ''}}>Nao</option>
+            </select>
+
+            
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+            </div>
+            
+        </div>
+    </form>
 
     @foreach($filmes as $filme)
 

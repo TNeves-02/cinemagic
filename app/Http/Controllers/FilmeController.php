@@ -8,7 +8,6 @@ use App\Models\Genero;
 use App\Models\Bilhete;
 use App\Models\Sessao;
 use App\Http\Requests\FilmePost;
-use DB;
 
 class FilmeController extends Controller
 {
@@ -20,9 +19,9 @@ class FilmeController extends Controller
         $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();
         $maisVistos = Filme::select('filmes.*')
                         ->join('sessoes','filmes.id','=','sessoes.filme_id')
-                       // ->groupBy('filmes.id')
-                      //  ->orderByRaw("COUNT('sessoes.id') desc")
-                      //  ->take(3)
+                       ->groupBy('filmes.id')
+                       ->orderByRaw("COUNT('sessoes.id') desc")
+                       ->take(3)
                         ->get();     
 
         $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
@@ -42,17 +41,56 @@ class FilmeController extends Controller
                                     ->withProximasSessoes($proximasSessoes);
     }
 
-    public function filmespag()
+    public function filmespag( Request $request )
     {
         $qry = Filme::query();
-        $filmes = $qry->paginate(20);
-        $generos = Genero::all();
+        $genero = $request->genero ?? '';
+        if ($genero) {
+            $qry->where('genero_code', $genero);
+        }
+        $titulo = $request->titulo ?? '';
+        if ($titulo) {
+            $qry->where('titulo','LIKE', '%' . $titulo . '%');
+        }
+
+        $ano = $request->ano ?? '';
+        if ($ano) {
+            $qry->where('ano', $ano);
+        }
         
-        $ano = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
+       $sessao = ' ';
+        $sessoes = $request->sessoes ?? '';
+        if ($sessoes == 1) {
+            $id_filme = Sessao::Select('filme_id')->where([['data','=',date('Y-m-d', time())],['horario_inicio','>=', date('H:i:s', time())]])
+                                                  ->Orwhere('data','>',date('Y-m-d', time()))                           
+                                                  ->distinct()->get();
+            for ($i=0; $i < count($id_filme) ; $i++) { 
+                $qry->Orwhere('id', $id_filme[$i]->filme_id);
+            }
+            $sessao = 1;
+        }
+        elseif ($sessoes == 0) {
+            $id_filme = Sessao::Select('filme_id')->where([['data','=',date('Y-m-d', time())],['horario_inicio','<', date('H:i:s', time())]])
+                                                  ->Orwhere('data','<',date('Y-m-d', time()))                           
+                                                 ->distinct()->get();
+            for ($i=0; $i < count($id_filme) ; $i++) { 
+                     $qry->Orwhere('id', $id_filme[$i]->filme_id);
+            }
+            $sessao = 0;
+        }
+
+        $filmes = $qry->paginate(20);
+
+        $generos = Genero::all();
+
+        $anos = Filme::select('ano')->distinct()->orderBy('ano', 'desc')->get(); 
   
         return view('filmes.index')->withFilmes($filmes)
                                    ->withGeneros($generos)
-                                   ->withAnos($ano);
+                                   ->withSelectedGenero($genero)
+                                   ->withSelectedAno($ano)
+                                   ->withSelectedSessao($sessao)
+                                   ->withAnos($anos);
                 
     }
 

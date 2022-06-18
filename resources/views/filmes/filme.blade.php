@@ -16,7 +16,6 @@
                     <div class="filme_details_text">
                         <div class="filme_details_title">
                             <h3>{{ $filme->titulo }}</h3>
-                            <!--<span>Genero</span>-->
                         </div>
                         <div class="filme_details_widget">
                             <div class="row">
@@ -57,7 +56,7 @@
     <form method="GET" action="{{route('filmes.filme', ['filme' => $filme]) }}" class="form-group">
         <div class="input-group mt-5">
             <h3 class="col-lg-7 text-center">Sessões</h3>
-            <select class="custom-select" name="data" id="inputGernero" aria-label="Data">
+            <select class="custom-select" name="data" id="inputData" aria-label="Data">
                 <option value="" {{'' == old('data', $selectedData) ? 'selected' : ''}}>Datas</option>
                 @foreach ($datas as $data)
                     <option value={{$data->data}} {{$data->data == old('data', $selectedData) ? 'selected' : ''}}>{{$data->data}}</option>

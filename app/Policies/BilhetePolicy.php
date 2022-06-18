@@ -32,7 +32,7 @@ class BilhetePolicy
     {
         if($user->id == $bilhete->cliente_id)
         {
-            return true
+            return true;
         }
         return ($user->tipo == 'A' || $user->tipo == 'F');
     }
