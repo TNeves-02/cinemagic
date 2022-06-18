@@ -17,12 +17,13 @@ class FilmeController extends Controller
         $filmes = $qry->paginate(10);
         $generos = Genero::all();
         $ultLancamentos = Filme::orderBy('ano', 'desc')->take(3)->get();
-        $maisVistos = Filme::select('filmes.*')
-                        ->join('sessoes','filmes.id','=','sessoes.filme_id')
-                       ->groupBy('filmes.id')
-                       ->orderByRaw("COUNT('sessoes.id') desc")
-                       ->take(3)
-                        ->get();     
+        $maisVistos = Filme::select('filmes.id','filmes.cartaz_url',Filme::raw('COUNT(*) as conta'))
+                        ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')
+                        ->groupBy('filmes.id')
+                        ->groupBy('filmes.cartaz_url')
+                        ->orderByDesc('conta')
+                        ->take(3)
+                        ->get();                                                   
 
         $proximasSessoes = Filme::select('filmes.*','sessoes.id as sessionId','salas.nome','sessoes.horario_inicio','sessoes.data')
                             ->join('sessoes', 'filmes.id', '=', 'sessoes.filme_id')

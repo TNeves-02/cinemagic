@@ -38,7 +38,7 @@ Route::get('/lugares/{filme}/{sessao}', [LugarController::class, 'lugares'])->na
 
 Route::get('/historico', [ReciboController::class, 'index'])->name('recibos.index');
 
-Route::get('/historico/{recibo}', [ReciboController::class, 'historico'])->name('historico.recibo');
+Route::get('/historico/{recibo}', [ReciboController::class, 'historico'])->name('historico.recibo')->middleware('can:view,recibo');;
 
 Route::get('/perfil', [ClienteController::class, 'perfil'])->name('clientes.perfil');
 

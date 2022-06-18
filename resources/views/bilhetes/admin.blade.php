@@ -39,9 +39,9 @@
             <td>
 
             @if ($bilhete->estado == "usado")
-            <span style="background-color:red; color:white; border-radius: 10%">{{$bilhete->estado}}</span>
+            <span class="badge badge-success">{{$bilhete->estado}}</span>
             @elseif($bilhete->estado == "não usado")
-            <span style="background-color:green; color:white; border-radius: 10%">{{$bilhete->estado}}</span>
+            <span class="badge badge-danger">{{$bilhete->estado}}</span>
             @endif
         </td>
             {{-- @can('update', $bilhete)

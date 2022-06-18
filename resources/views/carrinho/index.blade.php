@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
-<section class="vh-100 mt-5" style="background-image:url({{asset('img/filmbg.jpg')}}); background-size: cover; background-repeat: no-repeat;">
-    <div class="container py-5 h-100 mt-5 ml-5 pr-5 mw-100">
+<section class="vh-100 mt-5" style="background-image:url({{asset('img/filmbg.jpg')}});height: 100%; background-size: auto; background-repeat: no-repeat;">
+    <div class="container py-5 h-100 mt-5 ml-5 pr-5 mw-100"> 
         <div class="row d-flex justify-content-center align-items-center h-100 w-100">
             <div class="col-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card bg-white text-dark" style="border-radius: 1rem;">

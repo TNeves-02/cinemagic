@@ -70,21 +70,18 @@
     <input type="radio" name="slider2" id="itemMaisVistos-3">
     <div class="cards">
       <label class="card-carousel" for="itemMaisVistos-1" id="movieMaisVistos-1">
-        <a href="{{route('filmes.filme', $maisVistos[0])}}">
-          <img id="img-carousel"  src="{{$maisVistos[0]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[0]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
-        
+        <a href="{{route('filmes.filme', $maisVistos[0])}}">          
+          <img id="img-carousel"  src="{{$maisVistos[0]->cartaz_url ? asset('storage/cartazes/' . $maisVistos[0]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">        
         </a>
       </label>
       <label class="card-carousel" for="itemMaisVistos-2" id="movieMaisVistos-2">
         <a href="{{route('filmes.filme', $maisVistos[1])}}">
-          <img id="img-carousel"    src="{{$maisVistos[1]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[1]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
+          <img id="img-carousel"    src="{{$maisVistos[1]->cartaz_url ? asset('storage/cartazes/' . $maisVistos[1]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
         </a>
       </label>
       <label class="card-carousel" for="itemMaisVistos-3" id="movieMaisVistos-3">
         <a href="{{route('filmes.filme', $maisVistos[2])}}">
-          <img id="img-carousel"    src="{{$maisVistos[2]->cartaz_url ? asset('storage/cartazes/'  . $maisVistos[2]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">
-
-         
+          <img id="img-carousel"    src="{{$maisVistos[2]->cartaz_url ? asset('storage/cartazes/' . $maisVistos[2]->cartaz_url) : asset('img/no-available.jpg') }}" alt="movie">                  
         </a>
       </label>
 

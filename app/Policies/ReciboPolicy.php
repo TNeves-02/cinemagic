@@ -29,8 +29,8 @@ class ReciboPolicy
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, Recibo $recibo)
-    {
-        return ($user->tipo == 'A' || ($user->tipo == 'C' && $user->id == $recibo->cliente_id));
+    {        
+        return ($user->tipo == 'A' || ($user->tipo == 'C' && ($user->id == $recibo->cliente_id)));
     }
 
     /**
@@ -53,7 +53,7 @@ class ReciboPolicy
      */
     public function update(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D'
+        $user->tipo == 'D';
     }
 
     /**
@@ -65,7 +65,7 @@ class ReciboPolicy
      */
     public function delete(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D'
+        $user->tipo == 'D';
     }
 
     /**
@@ -77,7 +77,7 @@ class ReciboPolicy
      */
     public function restore(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D'
+        $user->tipo == 'D';
     }
 
     /**
@@ -89,6 +89,6 @@ class ReciboPolicy
      */
     public function forceDelete(User $user, Recibo $recibo)
     {
-        $user->tipo == 'D'
+        $user->tipo == 'D';
     }
 }
