@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Storage;
 
 class FaturaPaga extends Notification
 {
@@ -37,7 +38,8 @@ class FaturaPaga extends Notification
     public function toMail($notifiable)
     {
         $url = url('historico/' . $this->recibo->id );
-        //$path = storage_path('app/pdf_recibos/doc0001.jpeg'   . $this->recibo->fileName);
+        //$pdf = asset('/app/pdf_recibos/recibo'. $this->recibo->id .'.pdf');
+        //$pdf = Storage::response('pdf_recibos/recibo'. $this->recibo->id .'.pdf');           
 
         return (new MailMessage)
                     ->line('Recibo nº: ' . $this->recibo->id)
@@ -47,10 +49,11 @@ class FaturaPaga extends Notification
                     ->line('Poderá ver a emissão do recibo no seguinte botão:')                
                     ->action('Recibo URL' , $url)
                     ->line('Este ficheiro também está disponível como anexo neste email.')                
-                    ->line('Obrigado por escolher o Cinemagic e bons filmes.');
-
-                
-                    //->attach($path);
+                    ->line('Obrigado por escolher o Cinemagic e bons filmes.')            
+                    ->attach(storage_path('app/pdf_recibos/recibo'. $this->recibo->id .'.pdf'), [
+                        'mime' => 'application/pdf',
+                    ]); 
+                                      
     }
     /**
      * Get the array representation of the notification.

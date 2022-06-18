@@ -16,20 +16,24 @@
                             <hr>
                             <form action="{{ route('pagamento.recibo')  }}">
                             @if ($pagamento == 'VISA')
-                            <label for="inputNcartao">Número do Cartão:</label>
-                            <input type="text" id="NCartao" name="NCartao" required>
-                            <label for="inputcodCVC">Código CVC:</label>
-                            <input type="text" id="codCVC" name="codCVC" required>
+                            <div class="form-outline form-white mb-4">
+                                <input class="form-control " type="text" id="NCartao" name="NCartao" placeholder="Numero do Cartão" required>                                   
+                            </div>
+                            <div class="form-outline form-white mb-4">
+                                <input class="form-control" type="text" id="codCVC" name="codCVC" placeholder="Código CVC:" required>                                   
+                            </div>
 
                             @elseif( $pagamento == 'PAYPAL')
-                            <label for="inputEmail">Email</label>
-                            <input type="text" id="email" name="email" required>
+                            <div class="form-outline form-white mb-4">
+                                <input class="form-control " type="text" id="email" name="email" placeholder="Email" required>                                   
+                            </div>                            
 
                              @elseif( $pagamento == 'MBWAY')
-                            <label for="inputNTelefone">Nº Telefone</label>
-                            <input type="text" id="nTelefone" name="nTelefone" required>
-
-                            @else
+                             <div class="form-outline form-white mb-4">
+                                <input class="form-control " type="text" id="nTelefone" name="nTelefone" placeholder="Número de Telémovel" required>                                   
+                            </div>    
+                          
+                              @else
                            <h2>Algo Está MAL</h2>
                             @endif
                             @if($errors)

@@ -11,6 +11,8 @@ use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\PdfController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,8 @@ Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.in
 Route::delete('carrinho/{sessao}', [CarrinhoController::class, 'destroy_carrinho_linha'])->name('carrinho.destroy_linha');
 
 Route::delete('carrinho', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+
+Route::get('gerarpdf/{recibo}', [CarrinhoController::class, 'gerarPdf'])->name('pdf.index');
 
 //confirmação de carrinho e compra de carrinho necessitam de login
 Route::middleware('auth')->group(function () {

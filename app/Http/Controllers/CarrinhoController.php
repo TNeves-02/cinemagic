@@ -15,6 +15,8 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class CarrinhoController extends Controller
 {
@@ -168,6 +170,11 @@ class CarrinhoController extends Controller
                 }
                 
                $request->session()->forget('carrinho');
+               $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
+                            
+               $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
+               Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
+               
                Auth::user()->notify(new FaturaPaga($newRecibo));
                return redirect()->route('welcome.index');
             }
@@ -209,7 +216,13 @@ class CarrinhoController extends Controller
                     $newBilhete->save();
                  }
                 }
+
                 $request->session()->forget('carrinho');
+                $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
+                            
+                $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
+                Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
+               
                 Auth::user()->notify(new FaturaPaga($newRecibo));
                 return redirect()->route('welcome.index');
             }
@@ -252,9 +265,14 @@ class CarrinhoController extends Controller
                 }
                 $request->session()->forget('carrinho');
 
+                $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
+                            
+                $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
+                Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
+                
                 Auth::user()->notify(new FaturaPaga($newRecibo));
-
-                return redirect()->route('welcome.index');
+                                
+                return redirect()->route('welcome.index');                            
             }
             else{
                 return back()->withErrors(['msg' => 'Escreva um número de telefone válido!']);
