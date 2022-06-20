@@ -10,6 +10,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BilheteController;
+use App\Http\Controllers\ConfiguracaoController;
 use App\Http\Controllers\ReciboController;
 use App\Http\Controllers\PdfController;
 
@@ -140,6 +141,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
         Route::delete('clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
+        //clientes admin
+        Route::get('configuracao', [ConfiguracaoController::class, 'admin_index'])->name('configuracao');
+        
+        Route::get('configuracao/edit', [ConfiguracaoController::class, 'edit'])->name('configuracao.edit');
+
+        Route::put('configuracao/edit', [ConfiguracaoController::class, 'update'])->name('configuracao.update');
+    
         //bilhetes admin
 
         Route::get('bilhetes', [BilheteController::class, 'admin_index'])->name('bilhetes');

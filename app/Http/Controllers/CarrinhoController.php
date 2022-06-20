@@ -169,13 +169,12 @@ class CarrinhoController extends Controller
                  }
                 }
                 
-               $request->session()->forget('carrinho');
-               $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
-                            
-               $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
-               Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
                
+               $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();                            
+               $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
+               Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;                  
                Auth::user()->notify(new FaturaPaga($newRecibo));
+               $request->session()->forget('carrinho');
                return redirect()->route('welcome.index');
             }
             else{
@@ -217,13 +216,14 @@ class CarrinhoController extends Controller
                  }
                 }
 
-                $request->session()->forget('carrinho');
+               
                 $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
                             
                 $pdf = Pdf::loadView('pdf.index', ['recibo'=>$newRecibo,'bilhetes'=>$bilhetes]);
                 Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
                
                 Auth::user()->notify(new FaturaPaga($newRecibo));
+                $request->session()->forget('carrinho');
                 return redirect()->route('welcome.index');
             }
             else{
@@ -263,7 +263,7 @@ class CarrinhoController extends Controller
                     $newBilhete->save();
                  }
                 }
-                $request->session()->forget('carrinho');
+               
 
                 $bilhetes =  Bilhete::where('recibo_id',$newRecibo->id)->get();
                             
@@ -271,7 +271,7 @@ class CarrinhoController extends Controller
                 Storage::put('pdf_recibos/recibo'.$newRecibo->id.'.pdf',$pdf->output()) ;   
                 
                 Auth::user()->notify(new FaturaPaga($newRecibo));
-                                
+                $request->session()->forget('carrinho');
                 return redirect()->route('welcome.index');                            
             }
             else{

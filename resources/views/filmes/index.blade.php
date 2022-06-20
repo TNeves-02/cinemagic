@@ -53,16 +53,17 @@
         </div>
         <!--movie-header-->
         <div class="movie-content">
-            <div class="movie-content-header">
-                <a href="{{route('filmes.filme', $filme)}}">
+            <div class="movie-content-header">                          
+            <a href="{{route('filmes.filme', $filme)}}">
                     <h3 class="movie-title">{{$filme->titulo}}</h3>
-                </a>
+                </a>                         
             </div>
             <div class="movie-info">
                 <div class="info-section">
                     <label>Género</label>
                     <span>{{$filme->genero->nome}}</span>
                 </div>
+               
                 <!--date,time-->
                 <div class="info-section">
                     <label>Ano</label>

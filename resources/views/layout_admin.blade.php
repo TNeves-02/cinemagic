@@ -81,7 +81,13 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>{{ __('Sessoes  ') }}</span></a>
             </li>
-
+            @if(Auth::user()->tipo=="A")
+            <li class="nav-item ">
+                <a class="nav-link" href="{{route('admin.configuracao')}}">
+                <i class="fa-solid fa-gear"></i>
+                    <span>{{ __('Configuração  ') }}</span></a>
+            </li>
+            @endif
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
