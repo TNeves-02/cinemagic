@@ -48,6 +48,12 @@
         
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route('admin.funcionarios')}}">
+                        <i class="fas fa-fw fa-users"></i>
+                        <span>{{ __('Funcionários  ') }}</span></a>
+                </li>
+
             @endif
             <!-- Nav Item -->
             <li class="nav-item ">

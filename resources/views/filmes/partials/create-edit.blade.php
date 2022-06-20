@@ -45,7 +45,7 @@
 <div class="form-group">
     <label for="inputCartaz">Cartaz</label> 
     @if (Route::getCurrentRoute()->getName() != "admin.filmes.view")
-    <input type="file" class="form-control" name="cartaz_url" id="inputCartaz">
+    <input type="file" class="form-control" name="cartaz_url" id="inputCartaz" >
     @endif
     @error('cartaz_url')
         <div class="small text-danger">{{$message}}</div>

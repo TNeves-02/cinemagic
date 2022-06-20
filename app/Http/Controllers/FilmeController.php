@@ -8,6 +8,7 @@ use App\Models\Genero;
 use App\Models\Bilhete;
 use App\Models\Sessao;
 use App\Http\Requests\FilmePost;
+use Illuminate\Support\Facades\Storage;
 
 class FilmeController extends Controller
 {
@@ -226,6 +227,12 @@ class FilmeController extends Controller
     public function update(FilmePost $request, Filme $filme)
     {
         $filme->fill($request->validated());
+
+        if ($request->hasFile('cartaz_url')) {
+            Storage::delete('public/cartazes/' . $filme->cartaz_url);
+            $path = $request->cartaz_url->store('public/cartazes');
+            $filme->cartaz_url = basename($path);
+        }
         $filme->save();
         return redirect()->route('admin.filmes')
             ->with('alert-msg', 'Filme "' . $filme->titulo . '" foi alterado com sucesso!')
@@ -257,11 +264,11 @@ class FilmeController extends Controller
 
     public function destroy_foto(Filme $filme)
     {
-        Storage::delete('public/cartazes/' . $filme->cataz_url);
-        $filme->cataz_url = null;
+        Storage::delete('public/cartazes/' . $filme->cartaz_url);
+        $filme->cartaz_url = null;
         $filme->save();
         return redirect()->route('admin.filmes.edit', ['filme' => $filme])
-            ->with('alert-msg', 'Foto do filme "' . $filme->cartaz_url . '" foi removida!')
+            ->with('alert-msg', 'Foto do filme "' . $filme->titulo . '" foi removida!')
             ->with('alert-type', 'success');
     }
 

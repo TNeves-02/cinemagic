@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BilheteController;
 use App\Http\Controllers\ConfiguracaoController;
 use App\Http\Controllers\ReciboController;
+use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\PdfController;
 
 /*
@@ -151,5 +152,24 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         //bilhetes admin
 
         Route::get('bilhetes', [BilheteController::class, 'admin_index'])->name('bilhetes');
+
+         //Funcionarios
+         Route::get('funcionarios', [FuncionarioController::class, 'admin_index'])->name('funcionarios');
+
+         Route::put('funcionarios/{funcionario}', [FuncionarioController::class, 'block'])->name('funcionarios.block');
+    
+         Route::delete('funcionarios/{funcionario}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+    
+         Route::get('funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
+ 
+         Route::post('funcionarios', [FuncionarioController::class, 'store'])->name('funcionarios.store');
+ 
+         Route::get('funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+         
+         Route::put('funcionarios/{funcionario}/edit', [FuncionarioController::class, 'update'])->name('funcionarios.update');
+ 
+         Route::delete('funcionarios/{funcionario}/foto', [FuncionarioController::class, 'destroy_foto'])->name('funcionarios.foto.destroy');
+   
+         Route::get('funcionarios/{funcionario}/view', [FuncionarioController::class, 'view'])->name('funcionarios.view');
     });
 });
