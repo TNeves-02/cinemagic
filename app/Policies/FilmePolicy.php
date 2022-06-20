@@ -54,7 +54,7 @@ class FilmePolicy
      * @param  \App\Models\Filme  $filme
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Filme $filme)
+    public function update(User $user)
     {
         if($user->tipo == 'A')
         {

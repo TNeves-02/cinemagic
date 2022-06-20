@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Genero extends Model
 {
     use HasFactory,SoftDeletes;
+
+    public $timestamps = false;
     protected $primaryKey = 'code';
     protected $keyType = 'string';
     

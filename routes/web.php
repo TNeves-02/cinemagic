@@ -85,7 +85,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
         Route::get('filmes/{filme}/edit', [FilmeController::class, 'edit'])->name('filmes.edit')->middleware('can:update,filme');
         
-        Route::put('filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update')->middleware('can:update, App\Models\Filme');
+        Route::put('filmes/{filme}', [FilmeController::class, 'update'])->name('filmes.update')->middleware('can:update,filme');
 
         Route::delete('filmes/{filme}', [FilmeController::class, 'destroy'])->name('filmes.destroy')->middleware('can:delete,filme');
 
