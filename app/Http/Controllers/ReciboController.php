@@ -13,7 +13,8 @@ class ReciboController extends Controller
 {
     public function index()
     {
-        $recibos =  Recibo::where('cliente_id',Auth::id())                    
+        $recibos =  Recibo::where('cliente_id',Auth::id())
+                            ->orderBy('data', 'desc')                   
                             ->paginate(10);
                    
         return view('recibos.index')->withRecibos($recibos);                    

@@ -28,14 +28,18 @@ class LoginController extends Controller
      * @var string
      */
     protected function redirectTo() {
-        $user = Auth::user();
-        if($user->tipo == 'A' || $user->tipo == 'F')
+        $user = Auth::user();    
+        if(($user->tipo == 'A' || $user->tipo == 'F') && $user->bloqueado == 0)
         {
             return RouteServiceProvider::ADMIN;
         }
-        else if($user->tipo == 'C')
+        else if($user->tipo == 'C' && $user->bloqueado == 0)
         {
             return RouteServiceProvider::HOME;
+        }
+        else if($user->bloqueado == 1)
+        {
+            Auth::logout();
         }
     }
 

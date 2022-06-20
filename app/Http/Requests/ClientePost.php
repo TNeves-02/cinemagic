@@ -34,6 +34,7 @@ class ClientePost extends FormRequest
             'nif' =>              'nullable|digits:9',
             'tipo_pagamento' =>   'nullable|in:VISA,PAYPAL,MBWAY',
             'ref_pagamento' =>    'nullable',
+            
         ];
     }
 }

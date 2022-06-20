@@ -57,7 +57,7 @@ class ConfiguracaoPolicy
      * @param  \App\Models\Configuracao  $configuracao
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Configuracao $configuracao)
+    public function update(User $user)
     {
         if($user->tipo == 'A')
         {
